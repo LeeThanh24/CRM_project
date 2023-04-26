@@ -1,5 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 
 <head>
@@ -65,15 +68,18 @@
                     <li>
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                <img src="plugins/images/users/avaMale.png" alt="user-img" width="36"
                                     class="img-circle" />
-                                <b class="hidden-xs">Cybersoft</b>
+                                <% String fullname = (String) request.getAttribute("fullname");%>
+                                <% String email = (String) request.getAttribute("email");%>
+                                <% String firstName = (String) request.getAttribute("firstName");%>
+                                <b class="hidden-xs"><%=firstName%></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="profile.jsp">Thông tin cá nhân</a></li>
-                                <li><a href="#">Thống kê công việc</a></li>
+                                <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                                <li><a href="#">Statistics</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Đăng xuất</a></li>
+                                <li><a href="http://localhost:8080/login">Log out</a></li>
                             </ul>
                         </div>
                     </li>
@@ -93,19 +99,19 @@
                     </li>
                     <li>
                         <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
-                                                                         aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                                                                         aria-hidden="true"></i><span class="hide-menu">Member</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                                aria-hidden="true"></i><span class="hide-menu">Role</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                        aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                                                                        aria-hidden="true"></i><span class="hide-menu">Project</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                   aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                                                                   aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>
                         <a href="blank.jsp" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -124,7 +130,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Chi tiết thành viên</h4>
+                        <h4 class="page-title">Member information</h4>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -132,13 +138,14 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/img1.jpg">
+                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/blur.png">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="plugins/images/users/genu.jpg"
+                                        <a href="javascript:void(0)"><img src="plugins/images/users/avaMale.png"
                                                 class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white">Nguyễn Văn Tèo</h4>
-                                        <h5 class="text-white">info.teo@gmail.com</h5>
+
+                                        <h4 class="text-white"><%=fullname%></h4>
+                                        <h5 class="text-white"><%=email%></h5>
                                     </div>
                                 </div>
                             </div>
@@ -148,22 +155,28 @@
                     <div class="col-md-8 col-xs-12">
                         <!-- BEGIN THỐNG KÊ -->
                         <div class="row">
+                            <%
+                                int notStarted = (int) request.getAttribute("notStarted");
+                                int inProcessed = (int) request.getAttribute("inProcessed");
+                                int finished = (int) request.getAttribute("finished");
+                                int total = notStarted +inProcessed+finished;
+                            %>
                             <!--col -->
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                 <div class="white-box">
                                     <div class="col-in row">
                                         <div class="col-xs-12">
-                                            <h3 class="counter text-right m-t-15 text-danger">20%</h3>
+                                            <h3 class="counter text-right m-t-15 text-danger"><%=((int)(((double)notStarted/total)*100))%>%</h3>
                                         </div>
                                         <div class="col-xs-12">
                                             <i data-icon="E" class="linea-icon linea-basic"></i>
-                                            <h5 class="text-muted vb text-center">CHƯA BẮT ĐẦU</h5>
+                                            <h5 class="text-muted vb text-center">NOT STARTED</h5>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-danger" role="progressbar"
                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 20%"></div>
+                                                    style="width: <%=((double)notStarted/total)*100%>%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -175,17 +188,17 @@
                                 <div class="white-box">
                                     <div class="col-in row">
                                         <div class="col-xs-12">
-                                            <h3 class="counter text-right m-t-15 text-megna">50%</h3>
+                                            <h3 class="counter text-right m-t-15 text-megna"><%=((int)(((double)inProcessed/total)*100))%>%</h3>
                                         </div>
                                         <div class="col-xs-12">
                                             <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
-                                            <h5 class="text-muted vb text-center">ĐANG THỰC HIỆN</h5>
+                                            <h5 class="text-muted vb text-center">IN PROCESS</h5>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-megna" role="progressbar"
                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 50%"></div>
+                                                    style="width: <%=((double)inProcessed/total)*100%>%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -197,17 +210,17 @@
                                 <div class="white-box">
                                     <div class="col-in row">
                                         <div class="col-xs-12">
-                                            <h3 class="counter text-right m-t-15 text-primary">30%</h3>
+                                            <h3 class="counter text-right m-t-15 text-primary"><%=((int)(((double)finished/total)*100))%>%</h3>
                                         </div>
                                         <div class="col-xs-12">
                                             <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
-                                            <h5 class="text-muted vb text-center">HOÀN THÀNH</h5>
+                                            <h5 class="text-muted vb text-center">FINISHED</h5>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-primary" role="progressbar"
                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 30%"></div>
+                                                    style="width: <%=((double)finished/total)*100%>%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +234,7 @@
                 </div><br />
                 <!-- /.row -->
                 <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
-                <h4>DANH SÁCH CÔNG VIỆC</h4>
+                <h4>TASKS </h4>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
@@ -229,38 +242,29 @@
                                 <table class="table" id="example">
                                     <thead>
                                         <tr>
-                                            <th>STT</th>
-                                            <th>Tên Công Việc</th>
-                                            <th>Dự Án</th>
-                                            <th>Ngày Bắt Đầu</th>
-                                            <th>Ngày Kết Thúc</th>
-                                            <th>Trạng Thái</th>
-                                            <th>Hành Động</th>
+                                            <th>Id</th>
+                                            <th>Task name</th>
+                                            <th>Project</th>
+                                            <th>Start date</th>
+                                            <th>End date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Phân tích dự án</td>
-                                            <td>Dự án CRM</td>
-                                            <td>22/05/2019</td>
-                                            <td>30/05/2019</td>
-                                            <td>Đã hoàn thành</td>
-                                            <td>
-                                                <a href="profile-edit.jsp" class="btn btn-sm btn-primary">Cập nhật</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Thiết kế database</td>
-                                            <td>Dự án CRM</td>
-                                            <td>22/05/2019</td>
-                                            <td>30/05/2019</td>
-                                            <td>Đang thực hiện</td>
-                                            <td>
-                                                <a href="profile-edit.jsp" class="btn btn-sm btn-primary">Cập nhật</a>
-                                            </td>
-                                        </tr>
+                                        <c:forEach items="${tasksStatusJobsUsers}" var="item">
+                                            <tr>
+                                                <td>${item.getId()}</td>
+                                                <td>${item.getTaskName()}</td>
+                                                <td>${item.getProjName()}</td>
+                                                <td>${item.getStart()}</td>
+                                                <td>${item.getEnd()}</td>
+                                                <td>${item.getStatus()}</td>
+                                                <td>
+                                                    <a href="profile-edit.jsp" class="btn btn-sm btn-primary">Update</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -270,7 +274,7 @@
                 <!-- END DANH SÁCH CÔNG VIỆC -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; myclass.com </footer>
+            <footer class="footer text-center"> Copyright &copy; 2023 </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

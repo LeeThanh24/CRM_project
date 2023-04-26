@@ -71,10 +71,10 @@
                             <b class="hidden-xs">Cybersoft</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="profile.jsp">Thông tin cá nhân</a></li>
-                            <li><a href="#">Thống kê công việc</a></li>
+                            <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                            <li><a href="#">Statistics</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Đăng xuất</a></li>
+                            <li><a href="http://localhost:8080/login">Log out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -96,17 +96,17 @@
                 <li>
                     <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
                                                                                        aria-hidden="true"></i><span
-                            class="hide-menu">Thành viên</span></a>
+                            class="hide-menu">Member</span></a>
                 </li>
                 <li>
                     <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
                                                                                   aria-hidden="true"></i><span
-                            class="hide-menu">Quyền</span></a>
+                            class="hide-menu">Role</span></a>
                 </li>
                 <li>
                     <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
                                                                                  aria-hidden="true"></i><span
-                            class="hide-menu">Dự án</span></a>
+                            class="hide-menu">Project</span></a>
                 </li>
                 <li>
                     <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
@@ -204,7 +204,7 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-        <footer class="footer text-center"> 2018 &copy; myclass.com</footer>
+        <footer class="footer text-center"> Copyright &copy; 2023</footer>
     </div>
     <!-- /#page-wrapper -->
 </div>

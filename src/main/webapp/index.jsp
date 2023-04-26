@@ -70,13 +70,16 @@
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
-                                <b class="hidden-xs">Bear</b>
+                                <% String fullname = (String) request.getAttribute("fullname");%>
+                                <% String email = (String) request.getAttribute("email");%>
+                                <% String firstName = (String) request.getAttribute("firstName");%>
+                                <b class="hidden-xs"><%=firstName%></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="profile.jsp">Thông tin cá nhân</a></li>
-                                <li><a href="#">Thống kê công việc</a></li>
+                                <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                                <li><a href="#">Statistics</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Đăng xuất</a></li>
+                                <li><a href="http://localhost:8080/login">Log out</a></li>
                             </ul>
                         </div>
                     </li>
@@ -96,19 +99,19 @@
                     </li>
                     <li>
                         <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
-                                                                         aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                                                                         aria-hidden="true"></i><span class="hide-menu">Member</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                                aria-hidden="true"></i><span class="hide-menu">Role</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                        aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                                                                        aria-hidden="true"></i><span class="hide-menu">Project</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                   aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                                                                   aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>
                         <a href="blank.jsp" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -168,7 +171,7 @@
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic"
                                     data-icon="&#xe01b;"></i>
-                                <h5 class="text-muted vb">IN PROCCESS</h5>
+                                <h5 class="text-muted vb">IN PROCESS</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <h3 class="counter text-right m-t-15 text-megna"><%=inProcessed%></h3>
@@ -227,7 +230,7 @@
             </div>
         </div>
         <!-- /.container-fluid -->
-        <footer class="footer text-center"> 2018 &copy; myclass.com </footer>
+        <footer class="footer text-center"> Copyright &copy; 2023 </footer>
     </div>
     <!-- /#page-wrapper -->
     </div>

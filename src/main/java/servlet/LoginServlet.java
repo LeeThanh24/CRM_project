@@ -93,6 +93,7 @@ public class LoginServlet extends HttpServlet {
         if(isSuccess){
             //Tiến hành lưu cookie
             Cookie cookie = new Cookie("username",email);
+            System.out.println("Cookie value : " +cookie.getValue());
             cookie.setMaxAge(8 * 60 * 60);
             resp.addCookie(cookie);
 

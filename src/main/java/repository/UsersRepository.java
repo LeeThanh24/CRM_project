@@ -65,4 +65,33 @@ public class UsersRepository {
         return list;
     }
 
+    public List<String >  findUserByEmail(String email ){
+        int count = 0;
+
+        Connection connection = MysqlConfig.getConnection();
+        List<String> user = new ArrayList<>( ) ;
+
+        String query = "select  u.email, u.fullname  from users u where u.email = ?";
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,email);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next())
+            {
+                String anotherEmail = resultSet.getString("email");
+                String fullname = resultSet.getString("fullname");
+                user.add(anotherEmail);
+                user.add(fullname);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error in UserRepository find name by email : " +e.getMessage());
+            return null;
+        }
+
+        return user;
+    }
 }

@@ -10,14 +10,16 @@ import service.UsersService;
 import javax.management.relation.Role;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name= "Users Servlet" ,urlPatterns = {"/usersRoles","/user-add","/user/detail"})
+@WebServlet(name= "Users Servlet" ,urlPatterns = {"/usersRoles" ,"/user-add","/user/detail"})
 public class UsersRolesServlet extends HttpServlet {
+    UsersService usersService= new UsersService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -25,6 +27,10 @@ public class UsersRolesServlet extends HttpServlet {
         String url = req.getServletPath();
         System.out.println(url);
         String requestDispacther = "";
+        Cookie[]cookies = req.getCookies();
+        String fullname = usersService.findNameUserByEmail(cookies).get(1);
+        String firstName = usersService.getFirstName(fullname);
+        req.setAttribute("firstName",firstName);
         switch (url)
         {
             case "/user/detail" :

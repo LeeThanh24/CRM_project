@@ -73,10 +73,10 @@
                                     <b class="hidden-xs">Cybersoft</b> 
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="profile.jsp">Thông tin cá nhân</a></li>
-                                    <li><a href="#">Thống kê công việc</a></li>
+                                    <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                                    <li><a href="#">Statistics</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Đăng xuất</a></li>
+                                    <li><a href="http://localhost:8080/login">Log out</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -96,19 +96,19 @@
                     </li>
                     <li>
                         <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                                aria-hidden="true"></i><span class="hide-menu">Member</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                                aria-hidden="true"></i><span class="hide-menu">Role</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                        aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                                                                        aria-hidden="true"></i><span class="hide-menu">Project</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                   aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                                                                   aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>
                         <a href="blank.jsp" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -143,7 +143,7 @@
                                 <table class="table" id="example">
                                     <thead>
                                         <tr>
-                                            <th>STT</th>
+                                            <th>Id</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Username</th>
@@ -309,7 +309,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; myclass.com </footer>
+            <footer class="footer text-center"> Copyright &copy; 2023 </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

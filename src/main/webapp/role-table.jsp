@@ -68,14 +68,17 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
-                                    <b class="hidden-xs">Cybersoft</b> 
+                                    <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
+                                    <% String fullname = (String) request.getAttribute("fullname");%>
+                                    <% String email = (String) request.getAttribute("email");%>
+                                    <% String firstName = (String) request.getAttribute("firstName");%>
+                                    <b class="hidden-xs"><%=firstName%></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="profile.jsp">Thông tin cá nhân</a></li>
-                                    <li><a href="#">Thống kê công việc</a></li>
+                                    <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                                    <li><a href="#">Statistics</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Đăng xuất</a></li>
+                                    <li><a href="http://localhost:8080/login">Log out</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -95,19 +98,19 @@
                     </li>
                     <li>
                         <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
-                                                                         aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                                                                         aria-hidden="true"></i><span class="hide-menu">Member</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                                aria-hidden="true"></i><span class="hide-menu">Role</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                        aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                                                                        aria-hidden="true"></i><span class="hide-menu">Project</span></a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                   aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                                                                   aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>
                         <a href="blank.jsp" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -126,10 +129,10 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách quyền</h4>
+                        <h4 class="page-title">Roles</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href= "role-add.jsp" class="btn btn-sm btn-success">Thêm mới</a>
+                        <a href= "http://localhost:8080/roleAdd" class="btn btn-sm btn-success">Add</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -141,10 +144,10 @@
                                 <table class="table" id="example">
                                     <thead>
                                         <tr>
-                                            <th>STT</th>
-                                            <th>Tên Quyền</th>
-                                            <th>Mô Tả</th>
-                                            <th>Hành Động</th>
+                                            <th>Id</th>
+                                            <th>Role name</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -155,7 +158,7 @@
                                                 <td>${item.getRoleName()}</td>
                                                 <td>${item.getDescription()}</td>
                                                 <td>
-                                                    <a href="role-add.jsp" class="btn btn-sm btn-primary">Sửa</a>
+                                                    <a href="http://localhost:8080/roleAdd" class="btn btn-sm btn-primary">Sửa</a>
                                                     <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Xóa</a>
 <%--                                                    id=${item.getId()--%>
                                                 </td>
@@ -170,7 +173,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; myclass.com </footer>
+            <footer class="footer text-center"> Copyright &copy; 2023 </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
