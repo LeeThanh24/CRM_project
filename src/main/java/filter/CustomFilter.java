@@ -18,31 +18,39 @@ public class CustomFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Đây là filter");
+
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        Cookie[] cookies = request.getCookies();
-        if(cookies != null && cookies.length > 0){
-            boolean isLogin = false;
-            for (Cookie cookie: cookies) {
-                if("username".equals(cookie.getName())){
-                    isLogin= true;
-                    break;
-                }else{
-                    isLogin = false;
+        System.out.println("Đây là filter "+request.getServletPath());
+        if (request.getServletPath().equals("/index.jsp"))
+        {
+            response.sendRedirect(request.getContextPath() + "/index");
+            return ;
+        }else
+        {
+            Cookie[] cookies = request.getCookies();
+            if(cookies != null && cookies.length > 0){
+                boolean isLogin = false;
+                for (Cookie cookie: cookies) {
+                    if("username".equals(cookie.getName())){
+                        isLogin= true;
+                        break;
+                    }else{
+                        isLogin = false;
+                    }
                 }
-            }
 
-            if(isLogin){
-                filterChain.doFilter(request,response);
+                if(isLogin){
+                    filterChain.doFilter(request,response);
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/login");
+                }
             }else{
                 response.sendRedirect(request.getContextPath() + "/login");
             }
-        }else{
-            response.sendRedirect(request.getContextPath() + "/login");
         }
+
 
         //Cho phép truy cập vào servlet được chỉ định ở urlPattern
 //        filterChain.doFilter(request,response);

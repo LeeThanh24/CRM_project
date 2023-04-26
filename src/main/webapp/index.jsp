@@ -70,7 +70,7 @@
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
-                                <b class="hidden-xs">Cybersoft</b> 
+                                <b class="hidden-xs">Bear</b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Thông tin cá nhân</a></li>
@@ -140,15 +140,21 @@
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
                                     class="linea-icon linea-basic"></i>
-                                <h5 class="text-muted vb">CHƯA BẮT ĐẦU</h5>
+                                <h5 class="text-muted vb">NOT STARTED</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-danger">0</h3>
+                                <%
+                                    int notStarted = (int) request.getAttribute("notStarted");
+                                    int inProcessed = (int) request.getAttribute("inProcessed");
+                                    int finished = (int) request.getAttribute("finished");
+                                    int total = notStarted +inProcessed+finished;
+                                %>
+                                <h3 class="counter text-right m-t-15 text-danger"><%=notStarted%></h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span
+                                        aria-valuemin="0" aria-valuemax="100" style="width:  <%=((double)notStarted/total)*100%>%"> <span
                                             class="sr-only">40% Complete (success)</span> </div>
                                 </div>
                             </div>
@@ -162,15 +168,15 @@
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic"
                                     data-icon="&#xe01b;"></i>
-                                <h5 class="text-muted vb">ĐANG THỰC HIỆN</h5>
+                                <h5 class="text-muted vb">IN PROCCESS</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-megna">169</h3>
+                                <h3 class="counter text-right m-t-15 text-megna"><%=inProcessed%></h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%=((double)inProcessed/total)*100%>%"> <span
                                             class="sr-only">40% Complete (success)</span> </div>
                                 </div>
                             </div>
@@ -184,15 +190,15 @@
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic"
                                     data-icon="&#xe00b;"></i>
-                                <h5 class="text-muted vb">ĐÃ HOÀN THÀNH</h5>
+                                <h5 class="text-muted vb">FINISHED</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-primary">157</h3>
+                                <h3 class="counter text-right m-t-15 text-primary"><%=finished%></h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span
+                                        aria-valuemin="0" aria-valuemax="100" style="width:  <%=((double)finished/total)*100%>%"> <span
                                             class="sr-only">40% Complete (success)</span> </div>
                                 </div>
                             </div>
@@ -206,7 +212,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box">
-                        <h3 class="box-title">Sales Difference</h3>
+                        <h3 class="box-title">TEST</h3>
                         <ul class="list-inline text-right">
                             <li>
                                 <h5><i class="fa fa-circle m-r-5" style="color: #dadada;"></i>Site A View</h5>
