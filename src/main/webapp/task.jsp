@@ -156,7 +156,7 @@
                                     <% int count = 1;%>
                                         <c:forEach items="${tasksStatusJobsUsers}" var="item">
                                             <tr>
-                                                <td><%=count++%></td>
+                                                <td>${item.getId()}</td>
                                                 <td>${item.getTaskName()}</td>
                                                 <td>${item.getProjName()}</td>
                                                 <td>${item.getExecuter()}</td>

@@ -159,7 +159,7 @@
                                 <% int count = 1;%>
                                 <c:forEach items="${jobs}" var="item">
                                     <tr>
-                                        <td><%=count++%></td>
+                                        <td>${item.getId()}</td>
                                         <td>${item.getName()}</td>
                                         <td>${item.getStart_date()}</td>
                                         <td>${item.getEnd_date()}</td>

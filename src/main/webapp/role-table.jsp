@@ -151,7 +151,7 @@
                                     <% int count = 1 ;%>
                                         <c:forEach items="${roles}" var="item">
                                             <tr>
-                                                <td><%=count++%></td>
+                                                <td>${item.getId()}</td>
                                                 <td>${item.getRoleName()}</td>
                                                 <td>${item.getDescription()}</td>
                                                 <td>

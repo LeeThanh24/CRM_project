@@ -155,7 +155,7 @@
                                     <% int count = 1;%>
                                         <c:forEach items="${usersRoles}" var="item">
                                             <tr>
-                                                <td><%=count++%></td>
+                                                <td>${item.getId()}</td>
                                                 <td>${item.getFirstName()}</td>
                                                 <td>${item.getLastName()}</td>
                                                 <td>${item.getUsername()}</td>

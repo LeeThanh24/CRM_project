@@ -48,14 +48,17 @@ public class UsersRolesRepository {
     public int addNewUserRole(String fullname ,String email ,String password ,int roleId)
     {
         Connection connection= MysqlConfig.getConnection();
-        String query ="insert into users(email,password,fullname,role_id) values (?,?,?,?)";
+        String query ="insert into users(id ,email,password,fullname,role_id) values (?,?,?,?,?)";
+        int currentId  = countAllUsersRoles().size();
+        System.out.println("Current id : "+currentId); //-> current id +1
         int isSuccess =0 ;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,email);
-            statement.setString(2,password);
-            statement.setString(3,fullname);
-            statement.setInt(4,roleId);
+            statement.setInt(1,currentId+1);
+            statement.setString(2,email);
+            statement.setString(3,password);
+            statement.setString(4,fullname);
+            statement.setInt(5,roleId);
             isSuccess = statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in adding new userRole : "+e.getMessage());

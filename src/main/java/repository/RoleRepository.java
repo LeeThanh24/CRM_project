@@ -59,13 +59,15 @@ public class RoleRepository {
 
     public int addNewRole(String name, String desc) {
         Connection connection = MysqlConfig.getConnection();
-        String query = "insert into roles (name,description) values (?,?)";
+        String query = "insert into roles (id,name,description) values (?,?,?)";
+        int currentId = getAllRoles().size();
         int  isSuccess = 0;
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,name);
-            statement.setString(2,desc);
+            statement.setInt(1,currentId+1);
+            statement.setString(2,name);
+            statement.setString(3,desc);
             isSuccess=statement.executeUpdate();
 
         } catch (SQLException e) {

@@ -64,14 +64,16 @@ public class JobsRepository {
     public int addNewJob(String name ,String  start ,String  end )
     {
         Connection connection = MysqlConfig.getConnection();
-        String query = "insert into jobs (name,start_date,end_date) values (?,?,?)";
+        String query = "insert into jobs (id,name,start_date,end_date) values (?,?,?,?)";
+        int currentId = countAllJobs().size();
         int isSuccess = 0 ;
         try {
             PreparedStatement statement=connection.prepareStatement(query);
-            statement.setString(1,name);
+            statement.setInt(1,currentId+1);
+            statement.setString(2,name);
             System.out.println("Entered to job repo and "+start+" "+end);
-            statement.setString(2,  start);
-            statement.setString(3,  end);
+            statement.setString(3,  start);
+            statement.setString(4,  end);
             isSuccess=statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in adding new job : "+e.getMessage());

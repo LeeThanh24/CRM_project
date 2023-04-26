@@ -42,16 +42,18 @@ public class TasksStatusJobsUsersRepository {
     public int addNewTasksStatusJobsUsers(String taskName ,String start ,String end ,int user_id ,int job_id ,int status_id )
     {
         Connection connection= MysqlConfig.getConnection();
-        String query ="insert into tasks(name,start_date,end_date,user_id ,job_id,status_id) values (?,?,?,?,?,?)\n";
+        String query ="insert into tasks(id ,name,start_date,end_date,user_id ,job_id,status_id) values (?,?,?,?,?,?,?)\n";
+        int currentId = countAllTasksStatusJobsUsers().size();
         int isSuccess =0 ;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,taskName);
-            statement.setString(2,start);
-            statement.setString(3,end);
-            statement.setInt(4,user_id);
-            statement.setInt(5,job_id);
-            statement.setInt(6,status_id);
+            statement.setInt(1,currentId+1);
+            statement.setString(2,taskName);
+            statement.setString(3,start);
+            statement.setString(4,end);
+            statement.setInt(5,user_id);
+            statement.setInt(6,job_id);
+            statement.setInt(7,status_id);
             isSuccess = statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in adding new TasksStatusJobsUsers : "+e.getMessage());
