@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //urlPatters : Những link khi người dùng gọi sẽ kích hoạt filter
-@WebFilter(urlPatterns = {"/roles","/index.jsp","/usersRoles","/jobs","/tasksStatusJobsUsers","/blank.jsp","/404.jsp"})
+@WebFilter(urlPatterns = {"/roles", "/index.jsp", "/usersRoles", "/jobs", "/tasksStatusJobsUsers", "/blank", "/404.jsp"})
 public class CustomFilter implements Filter {
 
 //    @Override
@@ -22,31 +22,37 @@ public class CustomFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        System.out.println("Đây là filter "+request.getServletPath());
-        if (request.getServletPath().equals("/index.jsp"))
-        {
-            response.sendRedirect(request.getContextPath() + "/index");
-            return ;
-        }else
-        {
-            Cookie[] cookies = request.getCookies();
-            if(cookies != null && cookies.length > 0){
+        System.out.println("Đây là filter " + request.getServletPath());
+        Cookie[] cookies = request.getCookies();
+        if (request.getServletPath().equals("/index.jsp")) {
+            if (cookies != null && cookies.length > 0) {
+                response.sendRedirect(request.getContextPath() + "/index");
+                return;
+            } else {
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            }
+
+
+        } else {
+
+            if (cookies != null && cookies.length > 0) {
                 boolean isLogin = false;
-                for (Cookie cookie: cookies) {
-                    if("username".equals(cookie.getName())){
-                        isLogin= true;
+                for (Cookie cookie : cookies) {
+                    if ("username".equals(cookie.getName())) {
+                        isLogin = true;
                         break;
-                    }else{
+                    } else {
                         isLogin = false;
                     }
                 }
 
-                if(isLogin){
-                    filterChain.doFilter(request,response);
-                }else{
+                if (isLogin) {
+                    filterChain.doFilter(request, response);
+                } else {
                     response.sendRedirect(request.getContextPath() + "/login");
                 }
-            }else{
+            } else {
                 response.sendRedirect(request.getContextPath() + "/login");
             }
         }

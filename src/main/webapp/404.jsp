@@ -35,9 +35,9 @@
         <div class="error-box">
             <div class="error-body text-center">
                 <h1>403</h1>
-                <h3 class="text-uppercase">Bạn không có quyền truy cập !</h3>
+                <h3 class="text-uppercase">You are not allowed !</h3>
                 <p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
-                <a href='index.jsp' class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Về trang chủ</a> </div>
+                <a href='index.jsp' class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to home</a> </div>
             <footer class="footer text-center">2018 © Pixel Admin.</footer>
         </div>
     </section>

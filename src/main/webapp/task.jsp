@@ -114,7 +114,7 @@
                                 aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>
-                        <a href="blank.jsp" class="waves-effect"><i class="fa fa-columns fa-fw"
+                        <a href="http://localhost:8080/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
                                                                     aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
                     </li>
                     <li>

@@ -11453,7 +11453,7 @@
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default Hiển thị _START_ đến _END_ của _TOTAL_ entries
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
@@ -11467,7 +11467,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 	
 	
 			/**
