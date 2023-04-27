@@ -68,9 +68,12 @@
                     <li>
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                <img src="plugins/images/users/avaMale.png" alt="user-img" width="36"
                                     class="img-circle" />
-                                <b class="hidden-xs">Cybersoft</b>
+                                <% String fullname = (String) request.getAttribute("fullname");%>
+                                <% String email = (String) request.getAttribute("email");%>
+                                <% String firstName = (String) request.getAttribute("firstName");%>
+                                <b class="hidden-xs"><%=firstName%></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -127,7 +130,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Thêm mới công việc</h4>
+                        <h4 class="page-title">Add new task</h4>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -151,14 +154,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Tên công việc</label>
+                                    <label class="col-md-12">Task name</label>
                                     <div class="col-md-12">
-                                        <input id="taskName" type="text" placeholder="Tên công việc"
+                                        <input id="taskName" type="text" placeholder="Task name"
                                             class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Người thực hiện</label>
+                                    <label class="col-md-12">Executer</label>
                                     <div class="col-md-12">
                                         <select id ="doer" class="form-control form-control-line">
 
@@ -172,21 +175,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Ngày bắt đầu</label>
+                                    <label class="col-md-12">Start date</label>
                                     <div class="col-md-12">
                                         <input id="start" type="text" placeholder="dd/MM/yyyy"
                                             class="form-control form-control-line"> 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Ngày kết thúc</label>
+                                    <label class="col-md-12">End date</label>
                                     <div class="col-md-12">
                                         <input id="end" type="text" placeholder="dd/MM/yyyy"
                                             class="form-control form-control-line"> 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Tình trạng</label>
+                                    <label class="col-md-12">Status</label>
                                     <div class="col-md-12">
                                         <select id ="status" class="form-control form-control-line">
                                             <c:forEach items="${status}" var="item">
@@ -197,8 +200,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success btn-add">Lưu lại</button>
-                                        <a href="http://localhost:8080/tasksStatusJobsUsers" class="btn btn-primary">Quay lại</a>
+                                        <button type="submit" class="btn btn-success btn-add">Save</button>
+                                        <a href="http://localhost:8080/tasksStatusJobsUsers" class="btn btn-primary">Back</a>
                                     </div>
                                 </div>
                             </form>

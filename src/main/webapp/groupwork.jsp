@@ -69,8 +69,11 @@
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">Cybersoft</b>
+                            <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle"/>
+                            <% String fullname = (String) request.getAttribute("fullname");%>
+                            <% String email = (String) request.getAttribute("email");%>
+                            <% String firstName = (String) request.getAttribute("firstName");%>
+                            <b class="hidden-xs"><%=firstName%></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -133,10 +136,10 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Danh sách dự án</h4>
+                    <h4 class="page-title">Projects</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                    <a href="groupwork-add.jsp" class="btn btn-sm btn-success">Thêm mới</a>
+                    <a href="http://localhost:8080/jobAdd" class="btn btn-sm btn-success">Add</a>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -148,11 +151,11 @@
                             <table class="table" id="example">
                                 <thead>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>Tên Dự Án</th>
-                                    <th>Ngày Bắt Đầu</th>
-                                    <th>Ngày Kết Thúc</th>
-                                    <th>Hành Động</th>
+                                    <th>Id</th>
+                                    <th>Project name</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -164,9 +167,9 @@
                                         <td>${item.getStart_date()}</td>
                                         <td>${item.getEnd_date()}</td>
                                         <td>
-                                            <a href="groupwork-add.jsp" class="btn btn-sm btn-primary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-xoa" id=${item.getId()}>Xóa</a>
-                                            <a href="groupwork-details.jsp" class="btn btn-sm btn-info">Xem</a>
+                                            <a href="http://localhost:8080/jobAdd" class="btn btn-sm btn-primary">Update</a>
+                                            <a href="#" class="btn btn-sm btn-danger btn-xoa" id=${item.getId()}>Delete</a>
+                                            <a href="http://localhost:8080//jobDetail" class="btn btn-sm btn-info">Show</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

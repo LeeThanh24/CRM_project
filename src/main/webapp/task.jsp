@@ -69,7 +69,7 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
+                                    <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
                                     <% String fullname = (String) request.getAttribute("fullname");%>
                                     <% String email = (String) request.getAttribute("email");%>
                                     <% String firstName = (String) request.getAttribute("firstName");%>
@@ -130,10 +130,10 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách công việc</h4>
+                        <h4 class="page-title">Tasks</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="http://localhost:8080/task-add" class="btn btn-sm btn-success">Thêm mới</a>
+                        <a href="http://localhost:8080/task-add" class="btn btn-sm btn-success">Add</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -146,13 +146,13 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Tên Công Việc</th>
+                                            <th>Task name</th>
                                             <th>Project</th>
-                                            <th>Người Thực Hiện</th>
-                                            <th>Ngày Bắt Đầu</th>
-                                            <th>Ngày Kết Thúc</th>
-                                            <th>Trạng Thái</th>
-                                            <th>Hành Động</th>
+                                            <th>Executer</th>
+                                            <th>Start date</th>
+                                            <th>End date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -167,8 +167,8 @@
                                                 <td>${item.getEnd()}</td>
                                                 <td>${item.getStatus()}</td>
                                                 <td>
-                                                    <a href="http://localhost:8080/task-add" class="btn btn-sm btn-primary">Sửa</a>
-                                                    <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Xóa</a>
+                                                    <a href="http://localhost:8080/task-add" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Delete</a>
                                                         <%--                                                    id=${item.getId()--%>
                                                 </td>
                                             </tr>
