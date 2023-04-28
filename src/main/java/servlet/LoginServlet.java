@@ -97,7 +97,7 @@ public class LoginServlet extends HttpServlet {
             cookie.setMaxAge(8 * 60 * 60);
             resp.addCookie(cookie);
 
-            resp.sendRedirect(req.getContextPath() + "/roles");
+            resp.sendRedirect(req.getContextPath() + "/index");
         }else{
             req.getRequestDispatcher("login.jsp").forward(req,resp);
         }

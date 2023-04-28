@@ -1,12 +1,16 @@
 package service;
 
 import model.JobsModel;
+import model.ProjectDetailModel;
 import repository.JobsRepository;
+import repository.ProjectRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ProjectsService {
+    ProjectRepository projectRepository= new ProjectRepository();
 
     public List<JobsModel> countAllJobs()
     {
@@ -34,5 +38,25 @@ public class ProjectsService {
         return new JobsRepository().addNewJob(name,afterConvertStart,afterConvertEnd)>0;
     }
 
+    public List<List<ProjectDetailModel>> countAllStatusOfProject()
+    {
+        return projectRepository.countAllStatusOfProject();
+    }
 
+    public List<String >  countDoers()
+    {
+        List<String > listName=  new ArrayList<>();
+        List<List<ProjectDetailModel>> listProjectStatus = countAllStatusOfProject();
+        for (List<ProjectDetailModel> subList:listProjectStatus
+             ) {
+            for (ProjectDetailModel item : subList
+                 ) {
+                if (!listName.contains(item.getName()))
+                {
+                    listName.add(item.getName());
+                }
+            }
+        }
+        return listName;
+    }
 }

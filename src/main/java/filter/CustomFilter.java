@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //urlPatters : Những link khi người dùng gọi sẽ kích hoạt filter
-@WebFilter(urlPatterns = {"/roles", "/index.jsp", "/usersRoles", "/jobs", "/tasksStatusJobsUsers", "/blank", "/404.jsp"})
+@WebFilter(urlPatterns = {"/roles", "/index.jsp","/index", "/usersRoles", "/jobs", "/tasksStatusJobsUsers", "/blank", "/404.jsp"})
 public class CustomFilter implements Filter {
 
 //    @Override
@@ -24,17 +24,18 @@ public class CustomFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         System.out.println("Đây là filter " + request.getServletPath());
         Cookie[] cookies = request.getCookies();
-        if (request.getServletPath().equals("/index.jsp")) {
-            if (cookies != null && cookies.length > 0) {
-                response.sendRedirect(request.getContextPath() + "/index");
-                return;
-            } else {
-                response.sendRedirect(request.getContextPath() + "/login");
-                return;
-            }
-
-
-        } else {
+        System.out.println("Cookie size :"+cookies.length);
+//        if (request.getServletPath().equals("/index.jsp")) {
+//            if (cookies != null && cookies.length > 0) {
+//                response.sendRedirect(request.getContextPath() + "/index");
+//                return;
+//            } else {
+//                response.sendRedirect(request.getContextPath() + "/login");
+//                return;
+//            }
+//
+//
+//        } else {
 
             if (cookies != null && cookies.length > 0) {
                 boolean isLogin = false;
@@ -48,14 +49,23 @@ public class CustomFilter implements Filter {
                 }
 
                 if (isLogin) {
-                    filterChain.doFilter(request, response);
+                    if (request.getServletPath().equals("/index.jsp"))
+                    {
+                        response.sendRedirect(request.getContextPath() + "/index");
+                        return ;
+                    }else
+                    {
+                        filterChain.doFilter(request, response);
+                        return ;
+                    }
+
                 } else {
                     response.sendRedirect(request.getContextPath() + "/login");
                 }
             } else {
                 response.sendRedirect(request.getContextPath() + "/login");
             }
-        }
+//        }
 
 
         //Cho phép truy cập vào servlet được chỉ định ở urlPattern

@@ -1,4 +1,6 @@
-
+<%@ page import="model.ProjectDetailModel" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -38,422 +40,473 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <![endif]-->
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="cssload-speeding-wheel"></div>
-    </div>
-    <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-                <div class="navbar-header"> 
-                    <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                    <div class="top-left-part">
-                        <a class="logo" href="index.jsp">
-                            <b>
-                                <img src="plugins/images/pixeladmin-logo.png" alt="home" />
-                            </b>
-                            <span class="hidden-xs">
-                                <img src="plugins/images/pixeladmin-text.png" alt="home" />
+<!-- Preloader -->
+<div class="preloader">
+    <div class="cssload-speeding-wheel"></div>
+</div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+            <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse"
+               data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </a>
+            <div class="top-left-part">
+                <a class="logo" href="index.jsp">
+                    <b>
+                        <img src="plugins/images/pixeladmin-logo.png" alt="home"/>
+                    </b>
+                    <span class="hidden-xs">
+                                <img src="plugins/images/pixeladmin-text.png" alt="home"/>
                             </span>
-                        </a>
-                    </div>
-                    <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                        <li>
-                            <form role="search" class="app-search hidden-xs">
-                                <input type="text" placeholder="Search..." class="form-control"> 
-                                <a href="">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-top-links navbar-right pull-right">
-                        <li>
-                            <div class="dropdown">
-                                <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/avaMale.png  " alt="user-img" width="36" class="img-circle" />
-                                    <% String fullname = (String) request.getAttribute("fullname");%>
-                                    <% String email = (String) request.getAttribute("email");%>
-                                    <% String firstName = (String) request.getAttribute("firstName");%>
-                                    <b class="hidden-xs"><%=firstName%></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="http://localhost:8080/profile">Profiles</a></li>
-                                    <li><a href="#">Statistics</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="http://localhost:8080/login">Log out</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-header -->
-                <!-- /.navbar-top-links -->
-                <!-- /.navbar-static-side -->
-            </nav>
-        <!-- Left navbar-header -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <ul class="nav" id="side-menu">
-                    <li style="padding: 10px 0 0;">
-                        <a href="index.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                                                    aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
-                                                                         aria-hidden="true"></i><span class="hide-menu">Member</span></a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Role</span></a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                        aria-hidden="true"></i><span class="hide-menu">Project</span></a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                   aria-hidden="true"></i><span class="hide-menu">Task</span></a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:8080/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                    aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
-                    </li>
-                    <li>
-                        <a href="404.jsp" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                  aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
-                    </li>
-                </ul>
+                </a>
             </div>
+            <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
+                <li>
+                    <form role="search" class="app-search hidden-xs">
+                        <input type="text" placeholder="Search..." class="form-control">
+                        <a href="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <li>
+                    <div class="dropdown">
+                        <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
+                            <img src="plugins/images/users/avaMale.png  " alt="user-img" width="36" class="img-circle"/>
+                            <% String fullname = (String) request.getAttribute("fullname");%>
+                            <% String email = (String) request.getAttribute("email");%>
+                            <% String firstName = (String) request.getAttribute("firstName");%>
+                            <b class="hidden-xs"><%=firstName%>
+                            </b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                            <li><a href="#">Statistics</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://localhost:8080/login">Log out</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <!-- Left navbar-header end -->
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Project detail </h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a href="http://localhost:8080/index.jsp">Dashboard</a></li>
-                            <li class="active">Blank Page</li>
-                        </ol>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- BEGIN THỐNG KÊ -->
-                <div class="row">
-                    <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
-                                    <%
-                                        int notStarted = (int) request.getAttribute("notStarted");
-                                        int inProcessed = (int) request.getAttribute("inProcessed");
-                                        int finished = (int) request.getAttribute("finished");
-                                        int total = notStarted +inProcessed+finished;
-                                    %>
-                                    <h5 class="text-muted vb">NOT STARTED</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger"><%=((int)notStarted/total)*100%>%</h3>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=((double)notStarted/total)*100%>%">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic"
-                                        data-icon="&#xe01b;"></i>
-                                    <h5 class="text-muted vb">IN PROCESS</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-megna"><%=((int)inProcessed/total)*100%>%</h3>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-megna" role="progressbar"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=((double)inProcessed/total)*100%>%">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic"
-                                        data-icon="&#xe00b;"></i>
-                                    <h5 class="text-muted vb">FINISHED</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-primary"><%=((int)finished/total)*100%>%</h3>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=((double)finished/total)*100%>%">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- END THỐNG KÊ -->
-
-                <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
-
-                <!-- person 1 -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="#" class="group-title">
-                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle" />
-                            <span>Pavan kumar</span>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Chưa thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">testt</span> <span
-                                            class="time">22/4/2023 - 23/4/2023</span>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đang thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đã hoàn thành</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="#" class="group-title">
-                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle" />
-                            <span>Pavan kumar</span>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Chưa thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đang thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đã hoàn thành</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="#" class="group-title">
-                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle" />
-                            <span>Pavan kumar</span>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Chưa thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đang thực hiện</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="white-box">
-                            <h3 class="box-title">Đã hoàn thành</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
-                                            class="time">9:30 AM</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>
-                                        <span class="time">9:10 AM</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END DANH SÁCH CÔNG VIỆC -->
-            </div>
-            <!-- /.container-fluid -->
-            <footer class="footer text-center"> Copyright &copy; 2023 </footer>
+        <!-- /.navbar-header -->
+        <!-- /.navbar-top-links -->
+        <!-- /.navbar-static-side -->
+    </nav>
+    <!-- Left navbar-header -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+            <ul class="nav" id="side-menu">
+                <li style="padding: 10px 0 0;">
+                    <a href="index.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                                                                aria-hidden="true"></i><span
+                            class="hide-menu">Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/usersRoles" class="waves-effect"><i class="fa fa-user fa-fw"
+                                                                                       aria-hidden="true"></i><span
+                            class="hide-menu">Member</span></a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/roles" class="waves-effect"><i class="fa fa-modx fa-fw"
+                                                                                  aria-hidden="true"></i><span
+                            class="hide-menu">Role</span></a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                                 aria-hidden="true"></i><span
+                            class="hide-menu">Project</span></a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i
+                            class="fa fa-table fa-fw"
+                            aria-hidden="true"></i><span class="hide-menu">Task</span></a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                                                                  aria-hidden="true"></i><span
+                            class="hide-menu">Blank Page</span></a>
+                </li>
+                <li>
+                    <a href="404.jsp" class="waves-effect"><i class="fa fa-info-circle fa-fw"
+                                                              aria-hidden="true"></i><span
+                            class="hide-menu">Error 404</span></a>
+                </li>
+            </ul>
         </div>
-        <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
-    <script src="js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="js/waves.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="js/custom.min.js"></script>
+    <!-- Left navbar-header end -->
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Project detail </h4>
+                </div>
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:8080/index.jsp">Dashboard</a></li>
+                        <li class="active">Blank Page</li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- BEGIN THỐNG KÊ -->
+            <div class="row">
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i data-icon="E"
+                                                                       class="linea-icon linea-basic"></i>
+                                <%
+                                    int notStarted = (int) request.getAttribute("notStarted");
+                                    int inProcessed = (int) request.getAttribute("inProcessed");
+                                    int finished = (int) request.getAttribute("finished");
+                                    int total = notStarted + inProcessed + finished;
+                                %>
+                                <h5 class="text-muted vb">NOT STARTED</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-danger"><%=Math.round((((double) notStarted / total) * 100) * 10.0) / 10.0%>
+                                    %</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: <%=((double)notStarted/total)*100%>%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
+                                                                       data-icon="&#xe01b;"></i>
+                                <h5 class="text-muted vb">IN PROCESS</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-megna"><%=Math.round((((double) inProcessed / total) * 100) * 10.0) / 10.0%>
+                                    %</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-megna" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: <%=((double)inProcessed/total)*100%>%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
+                                                                       data-icon="&#xe00b;"></i>
+                                <h5 class="text-muted vb">FINISHED</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-primary"><%=Math.round((((double) finished / total) * 100) * 10.0) / 10.0%>
+                                    %</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: <%=((double)finished/total)*100%>%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- END THỐNG KÊ -->
+
+            <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
+
+            <!-- person 1 -->
+            <%--                <c:forEach items="${listName}" var="item">--%>
+            <%!
+            public List<ProjectDetailModel>findListTaskOfEachName (List<ProjectDetailModel> list,String name )
+            {
+                List<ProjectDetailModel> finalList = new ArrayList<>();
+                for (ProjectDetailModel item: list
+                     ) {
+                    if (item.getName().equals(name))
+                    {
+                        finalList.add(item);
+                    }
+                }
+                return finalList;
+            }
+            %>
+            <%
+                List<List<ProjectDetailModel>> list = (List<List<ProjectDetailModel>>) request.getAttribute("listProjectDetail");
+                List<ProjectDetailModel> listNotStarted = list.get(0);
+                List<ProjectDetailModel> listInProcess = list.get(1);
+                List<ProjectDetailModel> listFinished = list.get(2);
+                List<String> listNameTemp = (List<String>) request.getAttribute("listName");
+            %>
+            <%
+                int i = 0;
+                for (i = 0; i < listNameTemp.size(); i++) {%>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="#" class="group-title">
+                        <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle"/>
+                        <span><%=listNameTemp.get(i)%></span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <div class="white-box">
+                        <h3 class="box-title">NOT STARTED</h3>
+                        <div class="message-center">
+                           <%List<ProjectDetailModel> listTaskNotStarted = findListTaskOfEachName(listNotStarted,listNameTemp.get(i));%>
+                            <%
+                                int j ;
+                                for (j= 0; j <listTaskNotStarted.size() ; j++) { %>
+                                    <a href="#">
+                                        <div class="mail-contnet">
+                                            <h5><%=listTaskNotStarted.get(j).getProject()%></h5> <span class="mail-desc"><%=listTaskNotStarted.get(j).getTask()%></span>
+                                            <span class="time"><%=listTaskNotStarted.get(j).getStartDate()%> to <%=listTaskNotStarted.get(j).getEndDate()%></span>
+                                        </div>
+                                    </a>
+                            <%}
+                            %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="white-box">
+                        <h3 class="box-title">IN PROCESS</h3>
+                        <div class="message-center">
+                            <%List<ProjectDetailModel> listTaskInProcess = findListTaskOfEachName(listInProcess,listNameTemp.get(i));%>
+                            <%
+                                for (j= 0; j <listTaskInProcess.size() ; j++) { %>
+                            <a href="#">
+                                <div class="mail-contnet">
+                                    <h5><%=listTaskInProcess.get(j).getProject()%></h5> <span class="mail-desc"><%=listTaskInProcess.get(j).getTask()%></span>
+                                    <span class="time"><%=listTaskInProcess.get(j).getStartDate()%> to <%=listTaskInProcess.get(j).getEndDate()%></span>
+                                </div>
+                            </a>
+                            <%}
+                            %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="white-box">
+                        <h3 class="box-title">FINISHED</h3>
+                        <div class="message-center">
+                            <%List<ProjectDetailModel> listTaskFinished = findListTaskOfEachName(listFinished,listNameTemp.get(i));%>
+                            <%
+                                for (j= 0; j <listTaskFinished.size() ; j++) { %>
+                            <a href="#">
+                                <div class="mail-contnet">
+                                    <h5><%=listTaskFinished.get(j).getProject()%></h5> <span class="mail-desc"><%=listTaskFinished.get(j).getTask()%></span>
+                                    <span class="time"><%=listTaskFinished.get(j).getStartDate()%> to <%=listTaskFinished.get(j).getEndDate()%></span>
+                                </div>
+                            </a>
+                            <%}
+                            %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% }
+
+            %>
+
+            <%--                                <c:forEach items="${listProjectDetail}" var="item">--%>
+            <%--                                    <tr>--%>
+            <%--                                        <td>${item.getId()}</td>--%>
+            <%--                                        <td>${item.getRoleName()}</td>--%>
+            <%--                                        <td>${item.getDescription()}</td>--%>
+            <%--                                        <td>--%>
+            <%--                                            <a href="http://localhost:8080/roleAdd" class="btn btn-sm btn-primary">Update</a>--%>
+            <%--                                            <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Delete</a>--%>
+            <%--                                                &lt;%&ndash;                                                    id=${item.getId()&ndash;%&gt;--%>
+            <%--                                        </td>--%>
+            <%--                                    </tr>--%>
+            <%--                                </c:forEach>--%>
+
+            <%--                </c:forEach>--%>
+
+
+            <%--                <div class="row">--%>
+            <%--                    <div class="col-xs-12">--%>
+            <%--                        <a href="#" class="group-title">--%>
+            <%--                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle" />--%>
+            <%--                            <span>Pavan kumar</span>--%>
+            <%--                        </a>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Chưa thực hiện</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Đang thực hiện</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Đã hoàn thành</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+
+            <%--                <div class="row">--%>
+            <%--                    <div class="col-xs-12">--%>
+            <%--                        <a href="#" class="group-title">--%>
+            <%--                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle" />--%>
+            <%--                            <span>Pavan kumar</span>--%>
+            <%--                        </a>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Chưa thực hiện</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Đang thực hiện</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="col-md-4">--%>
+            <%--                        <div class="white-box">--%>
+            <%--                            <h3 class="box-title">Đã hoàn thành</h3>--%>
+            <%--                            <div class="message-center">--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span--%>
+            <%--                                            class="time">9:30 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                                <a href="#">--%>
+            <%--                                    <div class="mail-contnet">--%>
+            <%--                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span>--%>
+            <%--                                        <span class="time">9:10 AM</span>--%>
+            <%--                                    </div>--%>
+            <%--                                </a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <!-- END DANH SÁCH CÔNG VIỆC -->
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> Copyright &copy; 2023</footer>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!--slimscroll JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="js/custom.min.js"></script>
 </body>
 
 </html>

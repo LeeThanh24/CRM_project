@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                      aria-hidden="true"></i><span class="hide-menu">Project</span></a>
                     </li>
                     <li>
-                        <a href="http://localhost:8080/jobs" class="waves-effect"><i class="fa fa-table fa-fw"
+                        <a href="http://localhost:8080/tasksStatusJobsUsers" class="waves-effect"><i class="fa fa-table fa-fw"
                                                                         aria-hidden="true"></i><span class="hide-menu">Task</span></a>
                     </li>
                     <li>

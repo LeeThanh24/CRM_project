@@ -1,6 +1,7 @@
 package servlet;
 
 import model.JobsModel;
+import model.ProjectDetailModel;
 import service.ProjectsService;
 import service.TaskService;
 import service.UsersService;
@@ -37,13 +38,13 @@ public class ProjectsServlet extends HttpServlet {
                     System.out.println(job.getStart_date());
                 }
                 req.setAttribute("jobs",jobs);
-                req.getRequestDispatcher("groupwork.jsp").forward(req,resp);
+                req.getRequestDispatcher("/groupwork.jsp").forward(req,resp);
                 break;
             }
             case "/jobAdd" :
             {
 
-                req.getRequestDispatcher("groupwork-add.jsp").forward(req,resp);
+                req.getRequestDispatcher("/groupwork-add.jsp").forward(req,resp);
                 break;
             }
             case "/jobDetail":
@@ -54,7 +55,13 @@ public class ProjectsServlet extends HttpServlet {
                 req.setAttribute("notStarted", notStarted);
                 req.setAttribute("inProcessed", inProcessed);
                 req.setAttribute("finished", finished);
-                req.getRequestDispatcher("groupwork-details.jsp").forward(req,resp);
+
+                List<List<ProjectDetailModel>> listProjectDetail = projectsService.countAllStatusOfProject();
+                List<String > listName = projectsService.countDoers();
+                System.out.println("list name is " +listName.size());
+                req.setAttribute("listName", listName);
+                req.setAttribute("listProjectDetail", listProjectDetail);
+                req.getRequestDispatcher("/groupwork-details.jsp").forward(req,resp);
                 break;
             }
         }
