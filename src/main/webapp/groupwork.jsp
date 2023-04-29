@@ -73,7 +73,8 @@
                             <% String fullname = (String) request.getAttribute("fullname");%>
                             <% String email = (String) request.getAttribute("email");%>
                             <% String firstName = (String) request.getAttribute("firstName");%>
-                            <b class="hidden-xs"><%=firstName%></b>
+                            <b class="hidden-xs"><%=firstName%>
+                            </b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -120,7 +121,8 @@
                 </li>
                 <li>
                     <a href="http://localhost:8080/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
+                                                                                  aria-hidden="true"></i><span
+                            class="hide-menu">Blank Page</span></a>
                 </li>
                 <li>
                     <a href="404.jsp" class="waves-effect"><i class="fa fa-info-circle fa-fw"
@@ -140,7 +142,11 @@
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
                     <a href="http://localhost:8080/jobAdd" class="btn btn-sm btn-success">Add</a>
+                    <a href="http://localhost:8080//jobDetail"
+                       class="btn btn-sm btn-info">Show all</a>
                 </div>
+
+
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /row -->
@@ -167,9 +173,12 @@
                                         <td>${item.getStart_date()}</td>
                                         <td>${item.getEnd_date()}</td>
                                         <td>
-                                            <a href="http://localhost:8080/jobAdd" class="btn btn-sm btn-primary">Update</a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-xoa" id=${item.getId()}>Delete</a>
-                                            <a href="http://localhost:8080//jobDetail" class="btn btn-sm btn-info">Show</a>
+                                            <a href="http://localhost:8080/jobAdd"
+                                               class="btn btn-sm btn-primary">Update</a>
+                                            <a href="#" class="btn btn-sm btn-danger btn-xoa"
+                                               id=${item.getId()}>Delete</a>
+<%--                                            <a href="http://localhost:8080//jobDetail"--%>
+<%--                                               class="btn btn-sm btn-info">Show</a>--%>
                                         </td>
                                     </tr>
                                 </c:forEach>

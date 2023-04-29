@@ -39,6 +39,34 @@ public class TasksStatusJobsUsersRepository {
         return myList;
     }
 
+    public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
+    {
+        Connection connection= MysqlConfig.getConnection();
+        String query = "select t.id as id,t.name as task ,j.name as project, u.fullname as doer , t.start_date as start_date , t.end_date as end_date,s.name as status from tasks t inner join status s on t.status_id = s.id inner join jobs j on j.id = t.job_id inner join users u on u.id = t.user_id where u.email =?";
+        List<TasksStatusJobsUsersModel> myList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,email);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next())
+            {
+                int id = resultSet.getInt("id");
+                String task = resultSet.getString("task");
+                String project = resultSet.getString("project");
+                String doer = resultSet.getString("doer");;
+                String start_date = resultSet.getString("start_date");
+                String end_date = resultSet.getString("end_date");
+                String status = resultSet.getString("status");
+
+                myList.add(new TasksStatusJobsUsersModel(id,task,project,doer,start_date,end_date,status));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in querying in TasksStatusJobsUsers repository : "+e.getMessage());
+        }
+
+        return myList;
+    }
     public int addNewTasksStatusJobsUsers(String taskName ,String start ,String end ,int user_id ,int job_id ,int status_id )
     {
         Connection connection= MysqlConfig.getConnection();

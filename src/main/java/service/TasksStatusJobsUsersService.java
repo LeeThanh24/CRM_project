@@ -3,6 +3,7 @@ package service;
 import model.TasksStatusJobsUsersModel;
 import repository.TasksStatusJobsUsersRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TasksStatusJobsUsersService {
@@ -10,6 +11,12 @@ public class TasksStatusJobsUsersService {
     {
         return new TasksStatusJobsUsersRepository().countAllTasksStatusJobsUsers();
     }
+
+    public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
+    {
+        return new TasksStatusJobsUsersRepository().countAllTasksStatusJobsUsersByEmail(email);
+    }
+
 
     public boolean addNewTasksStatusJobsUsers(String taskName ,String start ,String end ,int user_id ,int job_id ,int status_id )
     {

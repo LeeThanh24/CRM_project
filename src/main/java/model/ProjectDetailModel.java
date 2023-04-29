@@ -8,16 +8,36 @@ public class ProjectDetailModel {
     private String startDate  ;
     private String endDate;
 
+    private String email;
+    public String getAva() {
+        return ava;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAva(String ava) {
+        this.ava = ava;
+    }
+
+    private String ava ;
+
     public ProjectDetailModel() {
     }
 
-    public ProjectDetailModel(String name, String status, String project, String task, String startDate, String endDate) {
+    public ProjectDetailModel(String name, String status, String project, String task, String startDate, String endDate ,String ava) {
         this.name = name;
         this.status = status;
         this.project = project;
         this.task = task;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.ava=ava;
     }
 
     public String getName() {

@@ -1,4 +1,5 @@
-
+<%@ page import="model.ProjectDetailModel" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -64,14 +65,20 @@
                         </form>
                     </li>
                 </ul>
+                <%
+                    String email =(String) request.getAttribute("email");
+                    List<ProjectDetailModel> listModel = (List<ProjectDetailModel>) request.getAttribute("listName");
+                    String ava =(String) request.getAttribute("ava");
+
+                %>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img src="plugins/images/users/avaMale.png" alt="user-img" width="36"
+                                <img src="plugins/images/users/<%=ava%> " alt="user-img" width="36"
                                     class="img-circle" />
                                 <% String fullname = (String) request.getAttribute("fullname");%>
-                                <% String email = (String) request.getAttribute("email");%>
+<%--                                <% String email = (String) request.getAttribute("email");%>--%>
                                 <% String firstName = (String) request.getAttribute("firstName");%>
                                 <b class="hidden-xs"><%=firstName%></b>
                             </a>
@@ -141,7 +148,7 @@
                             <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/blur.png">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="plugins/images/users/avaMale.png"
+                                        <a href="javascript:void(0)"><img src="plugins/images/users/<%=ava%>"
                                                 class="thumb-lg img-circle" alt="img"></a>
 
                                         <h4 class="text-white"><%=fullname%></h4>
@@ -252,9 +259,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${tasksStatusJobsUsers}" var="item">
+                                        <%int count =0;%>
+                                        <c:forEach items="${tasksStatusJobsUsersByEmail}" var="item">
                                             <tr>
-                                                <td>${item.getId()}</td>
+
+                                                <td><%=count+=1%></td>
                                                 <td>${item.getTaskName()}</td>
                                                 <td>${item.getProjName()}</td>
                                                 <td>${item.getStart()}</td>

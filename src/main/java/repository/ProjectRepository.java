@@ -19,7 +19,7 @@ public class ProjectRepository {
         List<List<ProjectDetailModel>> list = new ArrayList<>();
         Connection connection = MysqlConfig.getConnection();
         String queryNotStarted = "select\n" +
-                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate\n" +
+                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate,u.avatar as ava,u.email as email\n" +
                 "            from\n" +
                 "    tasks t\n" +
                 "    inner join users u\n" +
@@ -31,7 +31,7 @@ public class ProjectRepository {
                 "            where\n" +
                 "    s.name  = 'Chưa thực hiện'";
         String queryInProcess = "select\n" +
-                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate\n" +
+                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate,u.avatar as ava,u.email as email\n" +
                 "            from\n" +
                 "    tasks t\n" +
                 "    inner join users u\n" +
@@ -43,7 +43,7 @@ public class ProjectRepository {
                 "            where\n" +
                 "    s.name  = 'Đang thực hiện'";
         String queryFinished = "select\n" +
-                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate\n" +
+                "    u.fullname as fullname , s.name as status ,j.name as project,t.name as task, t.start_date as startDate ,t.end_date as endDate,u.avatar as ava,u.email as email\n" +
                 "            from\n" +
                 "    tasks t\n" +
                 "    inner join users u\n" +
@@ -70,7 +70,13 @@ public class ProjectRepository {
                 String task = resultSet.getString("task");
                 String startDate = resultSet.getString("startDate");
                 String endDate = resultSet.getString("endDate");
-                listNotStarted.add(new ProjectDetailModel(fullname, status, project, task, startDate, endDate));
+                String ava = resultSet.getString("ava");
+                String email = resultSet.getString("email");
+                ProjectDetailModel projectDetailModel =new ProjectDetailModel(fullname, status, project, task, startDate, endDate,ava);
+                projectDetailModel.setEmail(email);
+
+                listNotStarted.add(projectDetailModel);
+
 
             }
 
@@ -84,7 +90,13 @@ public class ProjectRepository {
                 String task = resultSet.getString("task");
                 String startDate = resultSet.getString("startDate");
                 String endDate = resultSet.getString("endDate");
-                listInProcess.add(new ProjectDetailModel(fullname, status, project, task, startDate, endDate));
+                String ava = resultSet.getString("ava");
+                String email = resultSet.getString("email");
+                ProjectDetailModel projectDetailModel =new ProjectDetailModel(fullname, status, project, task, startDate, endDate,ava);
+                projectDetailModel.setEmail(email);
+
+                listInProcess.add(projectDetailModel);
+
 
             }
 
@@ -98,7 +110,13 @@ public class ProjectRepository {
                 String task = resultSet.getString("task");
                 String startDate = resultSet.getString("startDate");
                 String endDate = resultSet.getString("endDate");
-                listFinished.add(new ProjectDetailModel(fullname, status, project, task, startDate, endDate));
+                String ava = resultSet.getString("ava");
+                String email = resultSet.getString("email");
+                ProjectDetailModel projectDetailModel =new ProjectDetailModel(fullname, status, project, task, startDate, endDate,ava);
+                projectDetailModel.setEmail(email);
+
+                listFinished.add(projectDetailModel);
+
 
             }
             list.add(listNotStarted);

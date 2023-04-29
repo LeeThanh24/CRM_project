@@ -43,20 +43,43 @@ public class ProjectsService {
         return projectRepository.countAllStatusOfProject();
     }
 
-    public List<String >  countDoers()
+    public List<ProjectDetailModel >  countDoers()
     {
-        List<String > listName=  new ArrayList<>();
+        List<ProjectDetailModel > listName=  new ArrayList<>();
+        List<String >listNameTemp = new ArrayList<>();
         List<List<ProjectDetailModel>> listProjectStatus = countAllStatusOfProject();
         for (List<ProjectDetailModel> subList:listProjectStatus
              ) {
             for (ProjectDetailModel item : subList
                  ) {
-                if (!listName.contains(item.getName()))
+                if (!listNameTemp.contains(item.getName()))
                 {
-                    listName.add(item.getName());
+                    listNameTemp.add(item.getName());
+                    listName.add(item);
                 }
             }
         }
         return listName;
+    }
+
+    public String getAva (List<ProjectDetailModel> list ,String email )
+    {
+        ProjectDetailModel projectDetailModel = null;;
+        for (ProjectDetailModel item: list
+        ) {
+            if (item.getEmail().equals(email))
+            {
+                projectDetailModel= item ;
+                break;
+            }
+        }
+        if (projectDetailModel !=null)
+        {
+            return projectDetailModel.getAva();
+        }else
+        {
+            return "avaMale.png";
+        }
+
     }
 }
