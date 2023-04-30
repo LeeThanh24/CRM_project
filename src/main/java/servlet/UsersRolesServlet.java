@@ -48,6 +48,7 @@ public class UsersRolesServlet extends HttpServlet {
                 UsersRolesService usersRolesService = new UsersRolesService();
                 req.setAttribute("usersRoles",usersRolesService.countAllUsersRoles());
                 requestDispacther="user-table.jsp";
+
                 req.getRequestDispatcher("user-table.jsp").forward(req,resp);
 
                 break;

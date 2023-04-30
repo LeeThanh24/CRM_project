@@ -2,8 +2,10 @@ package service;
 
 import model.JobsModel;
 import model.ProjectDetailModel;
+import model.UserRoleModel;
 import repository.JobsRepository;
 import repository.ProjectRepository;
+import repository.UsersRolesRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.List;
 
 public class ProjectsService {
     ProjectRepository projectRepository= new ProjectRepository();
+
+    UsersRolesRepository usersRolesRepository = new UsersRolesRepository() ;
 
     public List<JobsModel> countAllJobs()
     {
@@ -62,24 +66,9 @@ public class ProjectsService {
         return listName;
     }
 
-    public String getAva (List<ProjectDetailModel> list ,String email )
+    public String getAva ( String email )
     {
-        ProjectDetailModel projectDetailModel = null;;
-        for (ProjectDetailModel item: list
-        ) {
-            if (item.getEmail().equals(email))
-            {
-                projectDetailModel= item ;
-                break;
-            }
-        }
-        if (projectDetailModel !=null)
-        {
-            return projectDetailModel.getAva();
-        }else
-        {
-            return "avaMale.png";
-        }
+        return usersRolesRepository.findAvaByEmail(email);
 
     }
 }

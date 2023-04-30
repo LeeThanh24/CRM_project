@@ -67,8 +67,8 @@
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">Cybersoft</b>
+                            <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle"/>
+                            <b class="hidden-xs" style='color:#F6F1F1'>${firstName}</b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -131,7 +131,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Thêm mới thành viên</h4>
+                    <h4 class="page-title">Add new member</h4>
                 </div>
             </div>
             <!-- /.row -->
@@ -157,7 +157,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Password</label>
                                 <div class="col-md-12">
-                                    <input id="pass" type="password" value="password"
+                                    <input id="pass" type="password" value="password" placeholder=""
                                            class="form-control form-control-line">
                                 </div>
                             </div>
@@ -192,8 +192,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-success btn-add" >Add User</button>
-                                    <a href="http://localhost:8080/usersRoles" class="btn btn-primary">Quay lại</a>
+                                    <button type="submit" class="btn btn-success btn-add" >Save</button>
+                                    <a href="http://localhost:8080/usersRoles" class="btn btn-primary">Back</a>
                                 </div>
                             </div>
                         </form>

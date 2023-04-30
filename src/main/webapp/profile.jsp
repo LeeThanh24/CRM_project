@@ -68,19 +68,19 @@
                 <%
                     String email =(String) request.getAttribute("email");
                     List<ProjectDetailModel> listModel = (List<ProjectDetailModel>) request.getAttribute("listName");
-                    String ava =(String) request.getAttribute("ava");
+//                    String ava =(String) request.getAttribute("ava");
 
                 %>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img src="plugins/images/users/<%=ava%> " alt="user-img" width="36"
+                                <img src="plugins/images/users/${ava} " alt="user-img" width="36"
                                     class="img-circle" />
                                 <% String fullname = (String) request.getAttribute("fullname");%>
 <%--                                <% String email = (String) request.getAttribute("email");%>--%>
                                 <% String firstName = (String) request.getAttribute("firstName");%>
-                                <b class="hidden-xs"><%=firstName%></b>
+                                <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -148,7 +148,7 @@
                             <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/blur.png">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="plugins/images/users/<%=ava%>"
+                                        <a href="javascript:void(0)"><img src="plugins/images/users/${ava}"
                                                 class="thumb-lg img-circle" alt="img"></a>
 
                                         <h4 class="text-white"><%=fullname%></h4>

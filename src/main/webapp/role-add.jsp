@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,11 +66,11 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
+                                    <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle" />
                                     <% String fullname = (String) request.getAttribute("fullname");%>
                                     <% String email = (String) request.getAttribute("email");%>
                                     <% String firstName = (String) request.getAttribute("firstName");%>
-                                    <b class="hidden-xs"><%=firstName%></b>
+                                    <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -125,7 +127,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Thêm mới quyền</h4>
+                        <h4 class="page-title">Add new role</h4>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -136,22 +138,22 @@
                         <div class="white-box">
                             <form class="form-horizontal form-material">
                                 <div class="form-group">
-                                    <label class="col-md-12">Tên quyền</label>
+                                    <label class="col-md-12">Role name</label>
                                     <div class="col-md-12">
-                                        <input id ="name" type="text" placeholder="Tên quyền"
+                                        <input id ="name" type="text" placeholder="role name"
                                             class="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Mô tả</label>
+                                    <label class="col-md-12">Description</label>
                                     <div class="col-md-12">
-                                        <input type="text" id ="desc" placeholder="Mô tả" class="form-control form-control-line" />
+                                        <input type="text" id ="desc" placeholder="description" class="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success btn-them"  id="btn-add">Add Role</button>
-                                        <a href="http://localhost:8080/roles" class="btn btn-primary" >Quay lại</a>
+                                        <button type="submit" class="btn btn-success btn-them"  id="btn-add">Save</button>
+                                        <a href="http://localhost:8080/roles" class="btn btn-primary" >Back</a>
 
                                     </div>
                                 </div>

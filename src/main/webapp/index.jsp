@@ -1,5 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 
 <head>
@@ -69,11 +71,11 @@
                     <li>
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
+                                <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle" />
                                 <% String fullname = (String) request.getAttribute("fullname");%>
                                 <% String email = (String) request.getAttribute("email");%>
                                 <% String firstName = (String) request.getAttribute("firstName");%>
-                                <b class="hidden-xs"><%=firstName%></b>
+                                <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -217,7 +219,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box">
-                        <h3 class="box-title">TEST</h3>
+                        <h3 class="box-title">Projects</h3>
                         <ul class="list-inline text-right">
                             <li>
                                 <h5><i class="fa fa-circle m-r-5" style="color: #dadada;"></i>Site A View</h5>

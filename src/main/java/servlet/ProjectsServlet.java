@@ -33,12 +33,8 @@ public class ProjectsServlet extends HttpServlet {
             case "/jobs" :
             {
                 List<JobsModel> jobs=projectsService.countAllJobs();
-
-                for (JobsModel job: jobs
-                ) {
-                    System.out.println(job.getStart_date());
-                }
                 req.setAttribute("jobs",jobs);
+                System.out.println(req.getAttribute("ava"));
                 req.getRequestDispatcher("/groupwork.jsp").forward(req,resp);
                 break;
             }
@@ -50,6 +46,7 @@ public class ProjectsServlet extends HttpServlet {
             }
             case "/jobDetail":
             {
+                List<JobsModel> jobs=projectsService.countAllJobs();
                 String email ="";
                 for (Cookie cookie :cookies
                      ) {
@@ -66,6 +63,7 @@ public class ProjectsServlet extends HttpServlet {
                 req.setAttribute("inProcessed", inProcessed);
                 req.setAttribute("finished", finished);
                 req.setAttribute("email", email);
+                req.setAttribute("projects", jobs);
 
                 List<List<ProjectDetailModel>> listProjectDetail = projectsService.countAllStatusOfProject();
 //                System.out.println("list not started : "+listProjectDetail.get(0).size());
@@ -82,7 +80,7 @@ public class ProjectsServlet extends HttpServlet {
                 listAva.add("ava3.jpg");
                 listAva.add("ava4.jpg");
                 listAva.add("ava5.jpg");
-                String ava = projectsService.getAva(listName,email);
+                String ava = projectsService.getAva(email);
                 req.setAttribute("ava", ava);
                 req.setAttribute("listAva",listAva);
                 req.getRequestDispatcher("/groupwork-details.jsp").forward(req,resp);

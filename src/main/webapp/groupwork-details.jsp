@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Random" %>
+<%@ page import="model.JobsModel" %>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -95,17 +96,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 String email =(String) request.getAttribute("email");
                 List<ProjectDetailModel> listProject = (List<ProjectDetailModel>) request.getAttribute("listName");
 //                ProjectDetailModel avaObject = findModelByEmail(listModel,email);
-                String ava  =(String) request.getAttribute("ava");
+//                String ava  =(String) request.getAttribute("ava");
             %>
             <ul class="nav navbar-top-links navbar-right pull-right">
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/<%=ava%>" alt="user-img" width="36" class="img-circle"/>
+                            <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle"/>
                             <% String fullname = (String) request.getAttribute("fullname");%>
 <%--                            <% String email = (String) request.getAttribute("email");%>--%>
                             <% String firstName = (String) request.getAttribute("firstName");%>
-                            <b class="hidden-xs"><%=firstName%>
+                            <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%>
                             </b>
                         </a>
                         <ul class="dropdown-menu">
@@ -175,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
                         <li><a href="http://localhost:8080/index.jsp">Dashboard</a></li>
-                        <li class="active">Blank Page</li>
+                        <li class="active"><a href="http://localhost:8080/jobs"  style='color:#19A7CE'>Projects</a></li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -273,7 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 List<ProjectDetailModel> finalList = new ArrayList<>();
                 for (ProjectDetailModel item: list
                      ) {
-                    if (item.getName().equals(name))
+                    if (item.getProject().equals(name))
                     {
                         finalList.add(item);
                     }
@@ -286,14 +287,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 List<ProjectDetailModel> listNotStarted = list.get(0);
                 List<ProjectDetailModel> listInProcess = list.get(1);
                 List<ProjectDetailModel> listFinished = list.get(2);
+//                System.out.println("List not started size " +listNotStarted.size());
+//                System.out.println("List in process size " +listInProcess.size());
+//                System.out.println("List finished size " +listFinished.size());
 
+                List<JobsModel> projects = (List<JobsModel>) request.getAttribute("projects");
                 List<String>listAva = (List<String>) request.getAttribute("listAva");
 
             %>
             <%
                 int i = 0;
                 int countAva = 0 ;
-                for (i = 0; i < listProject.size(); i++) {%>
+                for (i = 0; i < projects.size(); i++) {%>
 
             <div class="row">
                 <div class="col-xs-12">
@@ -314,15 +319,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <%--                                ava=listAva.get(countAva);--%>
 <%--                            }--%>
 <%--                        %>--%>
-<%--                        <img width="30" src="plugins/images/users/<%=listProject.get(i).getAva()%>" class="img-circle"/>--%>
-                        <span><%=listProject.get(i).getName()%></span>
+                        <img width="30" src="plugins/images/project2.png" class="img-circle"/>
+                        <span><%=projects.get(i).getName()%></span>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <div class="white-box">
                         <h3 class="box-title">NOT STARTED</h3>
                         <div class="message-center">
-                           <%List<ProjectDetailModel> listTaskNotStarted = findListTaskOfEachName(listNotStarted,listProject.get(i).getName());%>
+                           <%List<ProjectDetailModel> listTaskNotStarted = findListTaskOfEachName(listNotStarted,projects.get(i).getName());%>
                             <%
                                 int j ;
                                 for (j= 0; j <listTaskNotStarted.size() ; j++) { %>
@@ -342,7 +347,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="white-box">
                         <h3 class="box-title">IN PROCESS</h3>
                         <div class="message-center">
-                            <%List<ProjectDetailModel> listTaskInProcess = findListTaskOfEachName(listInProcess,listProject.get(i).getName());%>
+                            <%List<ProjectDetailModel> listTaskInProcess = findListTaskOfEachName(listInProcess,projects.get(i).getName());%>
                             <%
                                 for (j= 0; j <listTaskInProcess.size() ; j++) { %>
                             <a href="#">
@@ -356,11 +361,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="white-box">
                         <h3 class="box-title">FINISHED</h3>
                         <div class="message-center">
-                            <%List<ProjectDetailModel> listTaskFinished = findListTaskOfEachName(listFinished,listProject.get(i).getName());%>
+                            <%List<ProjectDetailModel> listTaskFinished = findListTaskOfEachName(listFinished,projects.get(i).getName());%>
                             <%
                                 for (j= 0; j <listTaskFinished.size() ; j++) { %>
                             <a href="#">

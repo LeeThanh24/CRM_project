@@ -69,8 +69,8 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
-                                    <b class="hidden-xs">Cybersoft</b> 
+                                    <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle" />
+                                    <b class="hidden-xs" style='color:#F6F1F1'>${firstName}</b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -127,10 +127,10 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách thành viên</h4>
+                        <h4 class="page-title">Members</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="http://localhost:8080/user-add"  class="btn btn-sm btn-success">Thêm mới</a>
+                        <a href="http://localhost:8080/user-add"  class="btn btn-sm btn-success">Add</a>
 <%--                        "role-add.jsp"--%>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -148,7 +148,7 @@
                                             <th>Last Name</th>
                                             <th>Username</th>
                                             <th>Role</th>
-                                            <th>Hành động</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

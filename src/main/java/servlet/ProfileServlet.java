@@ -1,11 +1,9 @@
 package servlet;
 
 import model.ProjectDetailModel;
+import model.UserRoleModel;
 import repository.UsersRepository;
-import service.ProjectsService;
-import service.TaskService;
-import service.TasksStatusJobsUsersService;
-import service.UsersService;
+import service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +19,7 @@ public class ProfileServlet extends HttpServlet {
     UsersService usersService = new UsersService();
     TaskService taskService = new TaskService();
     ProjectsService projectsService= new ProjectsService();
+    UsersRolesService usersRolesService = new UsersRolesService();
     TasksStatusJobsUsersService tasksStatusJobsUsersService = new TasksStatusJobsUsersService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,17 +34,18 @@ public class ProfileServlet extends HttpServlet {
         req.setAttribute("inProcessed",inProcessed);
         req.setAttribute("finished",finished);
 
-        List<ProjectDetailModel> listName = projectsService.countDoers();
+        List<ProjectDetailModel> listProfile = projectsService.countDoers();
+        List<UserRoleModel> allRoles = usersRolesService.countAllUsersRoles();
 
         req.setAttribute("email", email);
-        String ava = projectsService.getAva(listName,email);
-        req.setAttribute("ava",ava);
-
-        req.setAttribute("listName", listName);
+        String ava = projectsService.getAva(email);
+//        req.setAttribute("ava",ava);
+        System.out.println("ava : "+ava+" and email is :"+email);
+        req.setAttribute("listName", listProfile);
 
 
         String firstName = usersService.getFirstName(fullname);
-        req.setAttribute("firstName",firstName);
+//        req.setAttribute("firstName",firstName);
 
         req.setAttribute("fullname",fullname);
         req.setAttribute("email",email);

@@ -1,5 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -62,11 +65,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="profile-pic" href="#"> <img src="plugins/images/users/avaMale.png" alt="user-img"
+                        <a class="profile-pic" href="#"> <img src="plugins/images/users/${ava}" alt="user-img"
                             <% String fullname = (String) request.getAttribute("fullname");%>
                             <% String email = (String) request.getAttribute("email");%>
                             <% String firstName = (String) request.getAttribute("firstName");%>
-                                width="36" class="img-circle"><b class="hidden-xs"><%=firstName%></b> </a>
+                                width="36" class="img-circle" ><b class="hidden-xs" style='color:#F6F1F1'  ><%=firstName%></b> </a>
                     </li>
                 </ul>
             </div>

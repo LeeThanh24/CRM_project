@@ -1,5 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 
 <head>
@@ -64,8 +67,8 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
-                                    <b class="hidden-xs">Cybersoft</b>
+                                    <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle" />
+                                    <b class="hidden-xs" style='color:#F6F1F1'>${firstName}</b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://localhost:8080/profile">Profiles</a></li>

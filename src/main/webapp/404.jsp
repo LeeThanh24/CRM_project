@@ -1,5 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 
 <head>
@@ -8,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href='<c:url value="/assets/plugins/images/favicon.png"></c:url>'>
+    <link rel="icon" type="image/png" sizes="16x16" href='<c:url value="plugins/images/favicon.png"></c:url>'>
     <title>403 - Forbidden</title>
     <!-- Bootstrap Core CSS -->
     <link href='bootstrap/dist/css/bootstrap.min.css' rel="stylesheet">

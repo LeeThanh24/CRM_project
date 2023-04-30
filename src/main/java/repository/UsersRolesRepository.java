@@ -45,6 +45,26 @@ public class UsersRolesRepository {
         return myList;
     }
 
+    public String findAvaByEmail(String email )
+    {
+        Connection connection= MysqlConfig.getConnection();
+        String query = "select u.avatar as avatar  from users u where u.email = ? ";
+        List<UserRoleModel> myList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,email);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next())
+            {
+                return resultSet.getString("avatar");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in querying in UsersRoles repository : "+e.getMessage());
+            return "avaMale.png";
+        }
+
+       return "";
+    }
     public int addNewUserRole(String fullname ,String email ,String password ,int roleId)
     {
         Connection connection= MysqlConfig.getConnection();
