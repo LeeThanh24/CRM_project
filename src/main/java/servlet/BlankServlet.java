@@ -1,5 +1,6 @@
 package servlet;
 
+import filter.SeachFilter;
 import service.UsersService;
 
 import javax.servlet.ServletException;
@@ -17,9 +18,18 @@ public class BlankServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[]cookies = req.getCookies();
         String fullname = usersService.findNameUserByEmail(cookies).get(1);
+        String search = req.getParameter("search");
+        SeachFilter seachFilter = new SeachFilter( search );
         String firstName = usersService.getFirstName(fullname);
         req.setAttribute("firstName",firstName);
-        req.getRequestDispatcher("blank.jsp").forward(req, resp);
+        System.out.println("VALUE OF SEARCH in blank page : " +search);
+        if (search !=null ) {
+            resp.sendRedirect(req.getContextPath() + seachFilter.resultAfterSearch());
+        } else {
+            req.getRequestDispatcher("blank.jsp").forward(req, resp);
+        }
+
+
 
     }
 }

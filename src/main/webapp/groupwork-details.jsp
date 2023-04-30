@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="fa fa-bars"></i>
             </a>
             <div class="top-left-part">
-                <a class="logo" href="index.jsp">
+                <a class="logo" href="http://localhost:8080/index">
                     <b>
                         <img src="plugins/images/pixeladmin-logo.png" alt="home"/>
                     </b>
@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="sidebar-nav navbar-collapse slimscrollsidebar">
             <ul class="nav" id="side-menu">
                 <li style="padding: 10px 0 0;">
-                    <a href="index.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                    <a href="http://localhost:8080/index" class="waves-effect"><i class="fa fa-clock-o fa-fw"
                                                                 aria-hidden="true"></i><span
                             class="hide-menu">Dashboard</span></a>
                 </li>
@@ -175,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="http://localhost:8080/index.jsp">Dashboard</a></li>
+                        <li><a href="http://localhost:8080/index">Dashboard</a></li>
                         <li class="active"><a href="http://localhost:8080/jobs"  style='color:#19A7CE'>Projects</a></li>
                     </ol>
                 </div>

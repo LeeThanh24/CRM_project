@@ -46,7 +46,7 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <div class="top-left-part">
-                        <a class="logo" href="index.jsp">
+                        <a class="logo" href="http://localhost:8080/index">
                             <b>
                                 <img src="plugins/images/pixeladmin-logo.png" alt="home" />
                             </b>
@@ -58,7 +58,7 @@
                     <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
                         <li>
                             <form role="search" class="app-search hidden-xs">
-                                <input type="text" placeholder="Search..." class="form-control"> 
+                                <input type="text" placeholder="Search..." class="form-control" >
                                 <a href="">
                                     <i class="fa fa-search"></i>
                                 </a>
@@ -91,7 +91,7 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li style="padding: 10px 0 0;">
-                        <a href="index.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                        <a href="http://localhost:8080/index" class="waves-effect"><i class="fa fa-clock-o fa-fw"
                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
                     <li>
