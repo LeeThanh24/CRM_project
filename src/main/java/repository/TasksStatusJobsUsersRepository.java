@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TasksStatusJobsUsersRepository {
+    TaskRepository taskRepository = new TaskRepository() ;
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsers()
     {
         Connection connection= MysqlConfig.getConnection();
@@ -102,5 +103,14 @@ public class TasksStatusJobsUsersRepository {
             System.out.println("Error in deleting a task : "+e.getMessage());
         }
         return isSuccess;
+    }
+
+    public boolean updateAllIdOfTasks ()
+    {
+        List<TasksStatusJobsUsersModel> allTasks = countAllTasksStatusJobsUsers();
+        for (int i = 1; i <=allTasks.size() ; i++) {
+            taskRepository.updateTaskById(allTasks.get(i-1).getId(),i);
+        }
+        return true ;
     }
 }

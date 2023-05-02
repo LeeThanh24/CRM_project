@@ -151,6 +151,13 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <form role="search" class="app-search hidden-xs">
+                                        <input type="text" placeholder="Search..." class="form-control">
+                                        <a href="">
+                                            <%--                                            <i class="fa fa-search"></i>--%>
+                                        </a>
+                                    </form>
+                                    <br>
                                     <tbody>
                                     <% int count = 1;%>
                                         <c:forEach items="${usersRoles}" var="item">
@@ -161,9 +168,9 @@
                                                 <td>${item.getUsername()}</td>
                                                 <td>${item.getRoleName()}</td>
                                                 <td>
-                                                    <a href="http://localhost:8080/user-add" class="btn btn-sm btn-primary">Sửa</a>
-                                                    <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Xóa</a>
-                                                    <a href="user-details.jsp" class="btn btn-sm btn-info">Xem</a>
+                                                    <a href="http://localhost:8080/user-add" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Delete</a>
+                                                    <a href="http://localhost:8080/profile" class="btn btn-sm btn-info">Show</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -327,9 +334,24 @@
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
+<%--    <script>--%>
+<%--        $(document).ready(function () {--%>
+<%--            $('#example').DataTable();--%>
+<%--        });--%>
+<%--    </script>--%>
     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                    "language": {
+                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "sLengthMenu": "Show _MENU_ entries",
+                        "infoFiltered": "",
+
+
+                    },
+                    "bFilter":false
+                }
+            );
         });
     </script>
     <script src="js/user.js"></script>

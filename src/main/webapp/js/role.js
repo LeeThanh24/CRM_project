@@ -14,6 +14,7 @@ $(document).ready(function () {
                console.log("Delete successfully !")
            }else
            {
+               alert("This role has been using")
                console.log("Delete unsuccessfully !")
            }
         })

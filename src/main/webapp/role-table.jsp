@@ -45,7 +45,7 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <div class="top-left-part">
-                        <a class="logo" href="http://localhost:8080/index">
+                        <a class="logo" href="index.jsp">
                             <b>
                                 <img src="plugins/images/pixeladmin-logo.png" alt="home" />
                             </b>
@@ -68,11 +68,11 @@
                         <li>
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> 
-                                    <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle" />
+                                    <img src="plugins/images/users/avaMale.png" alt="user-img" width="36" class="img-circle" />
                                     <% String fullname = (String) request.getAttribute("fullname");%>
                                     <% String email = (String) request.getAttribute("email");%>
                                     <% String firstName = (String) request.getAttribute("firstName");%>
-                                    <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%></b>
+                                    <b class="hidden-xs"><%=firstName%></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="http://localhost:8080/profile">Profiles</a></li>
@@ -93,7 +93,7 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li style="padding: 10px 0 0;">
-                        <a href="http://localhost:8080/index" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                        <a href="index.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw"
                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
                     <li>
@@ -150,6 +150,14 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <form role="search" class="app-search hidden-xs">
+                                        <input type="text" name ="subSearch" placeholder="Search..." class="form-control">
+                                        <a href="http://localhost:8080/roles">
+<%--                                            <i class="fa fa-search"></i>--%>
+
+                                        </a>
+                                    </form>
+                                    <br>
                                     <tbody>
                                     <% int count = 1 ;%>
                                         <c:forEach items="${roles}" var="item">
@@ -179,26 +187,36 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<%--    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>--%>
+    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script> <!--Essential -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Menu Plugin JavaScript -->
-    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script> <!-- Essential -->
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
-    <script src="js/jquery.dataTables.js"></script>
+    <script src="js/jquery.dataTables.js"></script> <!-- Essential -->
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="js/custom.min.js"></script>
+    <script src="js/custom.min.js"></script>    <!-- Essential -->
     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                    "language": {
+                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "sLengthMenu": "Show _MENU_ entries",
+                        "infoFiltered": "",
+
+
+                    },
+                "bFilter":false
+                }
+            );
         });
     </script>
-    <script src="js/role.js"></script>
+    <script src="js/role.js"></script> <!-- Essential -->
 </body>
 
 </html>

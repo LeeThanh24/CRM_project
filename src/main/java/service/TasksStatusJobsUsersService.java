@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TasksStatusJobsUsersService {
+    TasksStatusJobsUsersRepository tasksStatusJobsUsersRepository= new TasksStatusJobsUsersRepository() ;
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsers()
     {
-        return new TasksStatusJobsUsersRepository().countAllTasksStatusJobsUsers();
+        tasksStatusJobsUsersRepository.updateAllIdOfTasks();
+        return tasksStatusJobsUsersRepository.countAllTasksStatusJobsUsers();
     }
 
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
     {
-        return new TasksStatusJobsUsersRepository().countAllTasksStatusJobsUsersByEmail(email);
+        return tasksStatusJobsUsersRepository.countAllTasksStatusJobsUsersByEmail(email);
     }
 
 
@@ -29,11 +31,11 @@ public class TasksStatusJobsUsersService {
         String []listStringEnd = end.split("/");
         String afterConvertEnd = "";
         afterConvertEnd=listStringEnd[2]+"/"+listStringEnd[1] +"/"+listStringEnd[0];
-        return new TasksStatusJobsUsersRepository().addNewTasksStatusJobsUsers(taskName,afterConvertStart,afterConvertEnd,user_id,job_id,status_id)>0;
+        return tasksStatusJobsUsersRepository.addNewTasksStatusJobsUsers(taskName,afterConvertStart,afterConvertEnd,user_id,job_id,status_id)>0;
     }
 
     public boolean deleteTaskById(int id )
     {
-        return new TasksStatusJobsUsersRepository().deleteTaskById(id)>0;
+        return tasksStatusJobsUsersRepository.deleteTaskById(id)>0;
     }
 }

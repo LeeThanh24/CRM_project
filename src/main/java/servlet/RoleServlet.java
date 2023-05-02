@@ -6,6 +6,7 @@ import service.RoleService;
 import service.UsersRolesService;
 import service.UsersService;
 
+import javax.management.relation.Role;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,12 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "roleServlet", urlPatterns = {"/roles", "/roleAdd"})
 public class RoleServlet extends HttpServlet {
 
     UsersService usersService = new UsersService();
+    RoleService roleService = new RoleService();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,8 +37,19 @@ public class RoleServlet extends HttpServlet {
 
         switch (url) {
             case "/roles": {
-                RoleService roleService = new RoleService();
-                req.setAttribute("roles", roleService.getAllRoles());
+                String  roleSearch = (req.getParameter("subSearch"));
+                System.out.println("sub search : "+roleSearch);
+                List<RoleModel> roles = new ArrayList<>( );
+                if (roleSearch == null)
+                {
+                    roles=roleService.getAllRoles();
+                }else
+                {
+                    int id = (Integer.parseInt(roleSearch)) ;
+                    RoleModel role = roleService.findRoleById(id);
+                    roles.add(role);
+                }
+                req.setAttribute("roles",roles );
                 req.getRequestDispatcher("role-table.jsp").forward(req, resp);
 
                 break;

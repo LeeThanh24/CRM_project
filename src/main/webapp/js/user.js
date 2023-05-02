@@ -13,6 +13,8 @@ $(document).ready(function () {
                 This.closest('tr').remove()
                 console.log("Delete successfully !")
             } else {
+                alert("This user has been using")
+
                 console.log("Delete unsuccessfully !")
             }
         })

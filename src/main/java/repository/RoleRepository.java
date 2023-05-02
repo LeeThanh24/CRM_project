@@ -76,4 +76,29 @@ public class RoleRepository {
         return isSuccess;
     }
 
+
+    public RoleModel findRoleById(int id ) {
+        Connection connection = MysqlConfig.getConnection();
+        String query = "select r.id , r.name ,r.description from roles r where r.id =?";
+
+        try {
+            RoleModel roleModel = new RoleModel() ;
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,id );
+
+            ResultSet result = statement.executeQuery();
+            while (result.next() )
+            {
+                roleModel.setId(result.getInt("id"));
+                roleModel.setRoleName(result.getString("name"));
+                roleModel.setDescription(result.getString("description"));
+            }
+            return roleModel;
+
+        } catch (SQLException e) {
+            System.out.println("Error in mysql find role by id : "+e.getMessage());
+            return null;
+        }
+
+    }
 }

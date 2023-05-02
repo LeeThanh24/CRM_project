@@ -11,8 +11,10 @@ $(document).ready(function () {
         }).done(function (data) {
             if (data.data) {
                 This.closest('tr').remove()
+
                 console.log("Delete successfully !")
             } else {
+                alert("This project has been using")
                 console.log("Delete unsuccessfully !")
             }
         })

@@ -155,6 +155,13 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <form role="search" class="app-search hidden-xs">
+                                        <input type="text" placeholder="Search..." class="form-control">
+                                        <a href="">
+                                            <%--                                            <i class="fa fa-search"></i>--%>
+                                        </a>
+                                    </form>
+                                    <br>
                                     <tbody>
                                     <% int count = 1;%>
                                         <c:forEach items="${tasksStatusJobsUsers}" var="item">
@@ -228,9 +235,24 @@
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
+<%--    <script>--%>
+<%--        $(document).ready(function () {--%>
+<%--            $('#example').DataTable();--%>
+<%--        });--%>
+<%--    </script>--%>
     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                    "language": {
+                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "sLengthMenu": "Show _MENU_ entries",
+                        "infoFiltered": "",
+
+
+                    },
+                    "bFilter":false
+                }
+            );
         });
     </script>
     <script src="js/task.js"></script>
