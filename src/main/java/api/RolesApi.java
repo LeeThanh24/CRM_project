@@ -18,6 +18,7 @@ import java.util.List;
 public class RolesApi extends HttpServlet {
     //GET : Select. Dùng khi lấy dữ liệu
     //POST : Insert, Update, Delete...
+    RoleService roleService = new RoleService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getServletPath(); //Trả ra urlPattern mà user đang gọi
@@ -53,17 +54,17 @@ public class RolesApi extends HttpServlet {
 
     private BasicResponse deleteRoleById(int id){
         BasicResponse response = new BasicResponse();
-        RoleService roleService = new RoleService();
         response.setStatusCode(200);
         response.setMessage("Xóa  thành công !");
         response.setData(roleService.deleteRoleById(id));
+        roleService.updateAllRoleById();
 
         return response;
     }
 
     private BasicResponse getAllRole(){
         BasicResponse response = new BasicResponse();
-        RoleService roleService = new RoleService();
+
         List<RoleModel> list = roleService.getAllRoles();
         response.setStatusCode(200);
         response.setData(list);

@@ -40,6 +40,42 @@ public class TasksStatusJobsUsersRepository {
         return myList;
     }
 
+    public List<TasksStatusJobsUsersModel> filterTasks(int id ,String taskName ,String projectName ,String doer , String start ,String end ,  String status )
+    {
+        Connection connection= MysqlConfig.getConnection();
+        String query = "select t.id as id,\tt.name as task ,j.name as project, u.fullname as doer , t.start_date as start_date , t.end_date as end_date,s.name as status from tasks t inner join status s on t.status_id = s.id inner join jobs j on j.id = t.job_id inner join users u on u.id = t.user_id\n" +
+                "    where t.start_date LIKE ? OR t.end_date LIKE ? OR t.name LIKE ? OR j.name LIKE ? OR  u.fullname  LIKE ? or s.name LIKE ? OR t.id = ?";
+        List<TasksStatusJobsUsersModel> myList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString (1,"%" + start + "%" );
+            statement.setString (2,"%" + end + "%" );
+            statement.setString (3,"%" + taskName + "%" );
+            statement.setString (4,"%" + projectName + "%" );
+            statement.setString (5,"%" + doer + "%" );
+            statement.setString (6,"%" + status + "%" );
+            statement.setInt(7,id);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next())
+            {
+                int id1 = resultSet.getInt("id");
+                String task1 = resultSet.getString("task");
+                String project1 = resultSet.getString("project");
+                String doer1 = resultSet.getString("doer");;
+                String start_date1 = resultSet.getString("start_date");
+                String end_date1 = resultSet.getString("end_date");
+                String status1 = resultSet.getString("status");
+
+                myList.add(new TasksStatusJobsUsersModel(id1,task1,project1,doer1,start_date1,end_date1,status1));
+            }
+            return myList;
+        } catch (SQLException e) {
+            System.out.println("Error in querying in TasksStatusJobsUsers filter repository : "+e.getMessage());
+            return new ArrayList<>( );
+        }
+
+
+    }
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
     {
         Connection connection= MysqlConfig.getConnection();

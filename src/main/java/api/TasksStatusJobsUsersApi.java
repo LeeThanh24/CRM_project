@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "TasksStatusJobsUsers Api",urlPatterns = {"/api/tasksStatusJobsUsers/add","/api/tasksStatusJobsUsers/delete"})
 public class TasksStatusJobsUsersApi extends HttpServlet {
+    TasksStatusJobsUsersService tasksStatusJobsUsersService= new TasksStatusJobsUsersService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getServletPath();
@@ -58,7 +59,6 @@ public class TasksStatusJobsUsersApi extends HttpServlet {
     {
         BasicResponse basicResponse= new BasicResponse();
         basicResponse.setStatusCode(200);
-        TasksStatusJobsUsersService tasksStatusJobsUsersService= new TasksStatusJobsUsersService();
         basicResponse.setData(tasksStatusJobsUsersService.addNewTasksStatusJobsUsers(taskName,start,end,user_id,job_id,status_id));
         return basicResponse;
     }
@@ -67,8 +67,9 @@ public class TasksStatusJobsUsersApi extends HttpServlet {
     {
         BasicResponse basicResponse= new BasicResponse();
         basicResponse.setStatusCode(200);
-        TasksStatusJobsUsersService tasksStatusJobsUsersService= new TasksStatusJobsUsersService();
+
         basicResponse.setData(tasksStatusJobsUsersService.deleteTaskById(id));
+        tasksStatusJobsUsersService.updateAllById();
         return basicResponse;
     }
 }

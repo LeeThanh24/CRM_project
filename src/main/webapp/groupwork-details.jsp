@@ -198,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <h5 class="text-muted vb">NOT STARTED</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-danger"><%=Math.round((((double) notStarted / total) * 100) * 10.0) / 10.0%>
+                                <h3 class="counter text-right m-t-15 text-danger"><%=(int)(Math.ceil((((double) notStarted / total) * 100) * 10.0) / 10.0)%>
                                     %</h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -222,7 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <h5 class="text-muted vb">IN PROCESS</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-megna"><%=Math.round((((double) inProcessed / total) * 100) * 10.0) / 10.0%>
+                                <h3 class="counter text-right m-t-15 text-megna"><%=(int)(Math.ceil((((double) inProcessed / total) * 100) * 10.0) / 10.0)%>
                                     %</h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -246,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <h5 class="text-muted vb">FINISHED</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <h3 class="counter text-right m-t-15 text-primary"><%=Math.round((((double) finished / total) * 100) * 10.0) / 10.0%>
+                                <h3 class="counter text-right m-t-15 text-primary"><%=(int)(Math.ceil((((double) finished / total) * 100) * 10.0) / 10.0)%>
                                     %</h3>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

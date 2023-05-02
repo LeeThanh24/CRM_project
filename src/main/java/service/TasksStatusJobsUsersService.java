@@ -10,10 +10,18 @@ public class TasksStatusJobsUsersService {
     TasksStatusJobsUsersRepository tasksStatusJobsUsersRepository= new TasksStatusJobsUsersRepository() ;
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsers()
     {
-        tasksStatusJobsUsersRepository.updateAllIdOfTasks();
+        updateAllById();
         return tasksStatusJobsUsersRepository.countAllTasksStatusJobsUsers();
     }
 
+    public  List<TasksStatusJobsUsersModel> filterTasks (int id ,String taskName ,String projectName ,String doer , String start ,String end ,  String status )
+    {
+       return  tasksStatusJobsUsersRepository.filterTasks(id,taskName,projectName,doer,start,end,status);
+    }
+    public boolean updateAllById()
+    {
+        return tasksStatusJobsUsersRepository.updateAllIdOfTasks();
+    }
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
     {
         return tasksStatusJobsUsersRepository.countAllTasksStatusJobsUsersByEmail(email);

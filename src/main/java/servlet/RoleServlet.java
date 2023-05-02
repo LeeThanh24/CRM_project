@@ -37,19 +37,20 @@ public class RoleServlet extends HttpServlet {
 
         switch (url) {
             case "/roles": {
-                String  roleSearch = (req.getParameter("subSearch"));
-                System.out.println("sub search : "+roleSearch);
-                List<RoleModel> roles = new ArrayList<>( );
-                if (roleSearch == null)
-                {
-                    roles=roleService.getAllRoles();
+                String roleSearch = (req.getParameter("subSearch"));
+                System.out.println("sub search : " + roleSearch);
+                List<RoleModel> roles = new ArrayList<>();
+                if (roleSearch == null|| roleSearch.isEmpty()) {
+                    roles = roleService.getAllRoles();
+                } else if (roleService.validNumber(roleSearch) !=0) {
+                    int id = roleService.validNumber(roleSearch);
+                    roles = roleService.filterRoles(id,roleSearch,roleSearch);
+
                 }else
                 {
-                    int id = (Integer.parseInt(roleSearch)) ;
-                    RoleModel role = roleService.findRoleById(id);
-                    roles.add(role);
+                    roles = roleService.filterRoles(0,roleSearch,roleSearch);
                 }
-                req.setAttribute("roles",roles );
+                req.setAttribute("roles", roles);
                 req.getRequestDispatcher("role-table.jsp").forward(req, resp);
 
                 break;

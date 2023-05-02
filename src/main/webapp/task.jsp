@@ -134,6 +134,8 @@
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
                         <a href="http://localhost:8080/task-add" class="btn btn-sm btn-success">Add</a>
+                        <a href="http://localhost:8080/tasksStatusJobsUsers"
+                           class="btn btn-sm btn-info">Show all</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -155,12 +157,17 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <form role="search" class="app-search hidden-xs">
-                                        <input type="text" placeholder="Search..." class="form-control">
-                                        <a href="">
-                                            <%--                                            <i class="fa fa-search"></i>--%>
-                                        </a>
-                                    </form>
+                                    <div class="wrap" >
+                                        <div class="search">
+                                            <form  >
+                                                <input type="text" class="searchTerm" name ="subSearch" placeholder="Find ?">
+                                                <button type="submit" class="searchButton">
+                                                    <i class="fa fa-search"></i>
+
+                                                </button>
+                                            </form >
+                                        </div>
+                                    </div>
                                     <br>
                                     <tbody>
                                     <% int count = 1;%>
@@ -244,9 +251,11 @@
         $(document).ready(function () {
             $('#example').DataTable({
                     "language": {
-                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        // "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "sInfo": "Showing _TOTAL_ entries",
                         "sLengthMenu": "Show _MENU_ entries",
                         "infoFiltered": "",
+                        "sInfoEmpty": "Showing 0 entries",
 
 
                     },

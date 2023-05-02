@@ -77,27 +77,59 @@ public class RoleRepository {
     }
 
 
-    public RoleModel findRoleById(int id ) {
+    public List<RoleModel> filterRoles(int id ,String name ,String description) {
         Connection connection = MysqlConfig.getConnection();
-        String query = "select r.id , r.name ,r.description from roles r where r.id =?";
+
+        String query = ("select r.id , r.name ,r.description from roles r where r.name LIKE ? OR r.description LIKE ? OR r.id = ?");
 
         try {
-            RoleModel roleModel = new RoleModel() ;
+            List<RoleModel> roleModels = new ArrayList<>() ;
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,id );
-
+            statement.setInt(3,id );
+            statement.setString (1,"%" + name + "%" );
+            statement.setString(2,"%" + description + "%" );
+//            System.out.println("query role : "+query);
             ResultSet result = statement.executeQuery();
             while (result.next() )
             {
+                RoleModel roleModel = new RoleModel() ;
                 roleModel.setId(result.getInt("id"));
                 roleModel.setRoleName(result.getString("name"));
                 roleModel.setDescription(result.getString("description"));
+                roleModels.add(  roleModel );
             }
-            return roleModel;
+            return roleModels;
 
         } catch (SQLException e) {
             System.out.println("Error in mysql find role by id : "+e.getMessage());
-            return null;
+            return new ArrayList<>();
+        }
+
+    }
+
+
+    public boolean update(int oldId,int newId) {
+        Connection connection = MysqlConfig.getConnection();
+
+        String query = ("update  roles \n" +
+                "set id = ? \n" +
+                "where id = ? ");
+
+        try {
+            List<RoleModel> roleModels = new ArrayList<>() ;
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,newId );
+            statement.setInt(2,oldId );
+
+            boolean isSuccess = false ;
+
+//            System.out.println("query role : "+query);
+            isSuccess = (statement.executeUpdate()>0);
+            return isSuccess;
+
+        } catch (SQLException e) {
+            System.out.println("Error in mysql update role by id : "+e.getMessage());
+            return false ;
         }
 
     }
