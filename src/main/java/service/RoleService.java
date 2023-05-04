@@ -72,31 +72,45 @@ public class RoleService {
         }
     }
 
-    private static String validString(String myString, int casee) {
+    public  String validString(String myString, int casee) {
         String[] list = myString.split(" ");
         String finalList = "";
-
-        //case 1 : name , case 2 : description
-        if (casee == 1) {
-            for (String item : list
-            ) {
-                System.out.println(item);
-                if (!item.equals(" ")) {
-                    finalList += (item);
-                }
-            }
-        } else if (casee == 2) {
-            for (int i = 0; i < list.length; i++) {
-                if (!list[i].equals("")) {
-
-                    finalList += (list[i]);
-                    if (i == list.length - 1) {
-                        break;
-                    }
-                    finalList += " ";
-                }
+        int countCheck = 0 ;
+        for (String item : list
+             ) {
+            if (!item.equals(""))
+            {
+                countCheck +=1 ;
             }
         }
-        return finalList;
+        if (countCheck !=0 )
+        {
+            //case 1 : name , case 2 : description
+            if (casee == 1) {
+                for (String item : list
+                ) {
+                    System.out.println(item);
+                    if (!item.equals(" ")) {
+                        finalList += (item);
+                    }
+                }
+            } else if (casee == 2) {
+                for (int i = 0; i < list.length; i++) {
+                    if (!list[i].equals("")) {
+
+                        finalList += (list[i]);
+                        if (i == list.length - 1) {
+                            break;
+                        }
+                        finalList += " ";
+                    }
+                }
+            }
+            return finalList;
+        }else
+        {
+            return "";
+        }
+
     }
 }

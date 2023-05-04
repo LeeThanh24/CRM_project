@@ -15,17 +15,31 @@ public class ProjectsService {
     ProjectRepository projectRepository= new ProjectRepository();
 
     UsersRolesRepository usersRolesRepository = new UsersRolesRepository() ;
+    JobsRepository jobsRepository= new JobsRepository();
 
     public List<JobsModel> countAllJobs()
     {
+        updateAllJobById();
+        return jobsRepository.countAllJobs();
+    }
 
-        return new JobsRepository().countAllJobs();
+    public List<JobsModel> filterJobs(int id , String projectName , String start ,String end )
+    {
+
+        return projectRepository.filterJobs(id,projectName,start,end);
+    }
+    public void updateAllJobById ()
+    {
+        List<JobsModel > jobs = jobsRepository.countAllJobs();
+        for (int i = 1; i <=jobs.size() ; i++) {
+            projectRepository.updateJobById(jobs.get(i-1).getId(),i);
+        }
     }
 
     public boolean deleteJob(int id )
     {
 
-        return new JobsRepository().deleteJob(id) >0;
+        return jobsRepository.deleteJob(id) >0;
     }
 
     public boolean addNewJob (String name , String start ,String end)
@@ -39,7 +53,7 @@ public class ProjectsService {
         String []listStringEnd = end.split("/");
         String afterConvertEnd = "";
         afterConvertEnd=listStringEnd[2]+"/"+listStringEnd[1] +"/"+listStringEnd[0];
-        return new JobsRepository().addNewJob(name,afterConvertStart,afterConvertEnd)>0;
+        return jobsRepository.addNewJob(name,afterConvertStart,afterConvertEnd)>0;
     }
 
     public List<List<ProjectDetailModel>> countAllStatusOfProject()

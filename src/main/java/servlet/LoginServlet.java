@@ -2,6 +2,7 @@ package servlet;
 
 import config.MysqlConfig;
 import service.LoginService;
+import service.UsersRolesService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +19,44 @@ import java.sql.SQLException;
  * Anotation [Tên định danh]
  * Ký hiệu : @
  */
-            //Tên của servlet       //Đường dẫn của servlet
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+//Tên của servlet       //Đường dẫn của servlet
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/register", "/forgotPassword", "/changePassword","/changePasswordSuccess"})
 public class LoginServlet extends HttpServlet {
 
     //excuteQuery : Select
     //excuteUpdate : Create, Update, Delete...
+    LoginService loginService = new LoginService();
+    UsersRolesService usersRolesService = new UsersRolesService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String url = req.getServletPath();
+        switch (url) {
+            case "/login": {
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
+                break;
+            }
+            case "/register": {
+                req.getRequestDispatcher("register.jsp").forward(req, resp);
+                break;
+            }
+
+            case "/forgotPassword": {
+                req.getRequestDispatcher("forgotPassword.jsp").forward(req, resp);
+                break;
+            }
+            case "/changePassword": {
+
+                req.getRequestDispatcher("changePassword.jsp").forward(req, resp);
+                break;
+            }
+            case "/changePasswordSuccess":
+            {
+                req.getRequestDispatcher("changePasswordSuccess.jsp").forward(req, resp);
+
+                break;
+            }
+        }
         //Khởi tạo cookie           //Tên của cookie    //Giá trị của cookie
 //        Cookie cookie = new Cookie("username", URLEncoder.encode("Nguyen Van B","UTF-8"));
 //        cookie.setMaxAge(8 * 60 * 60); //Set thời gian hết hạn của cookie
@@ -78,36 +108,111 @@ public class LoginServlet extends HttpServlet {
 //            }
 //        }
 
-        req.getRequestDispatcher("login.jsp").forward(req,resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String url = req.getServletPath();
+        switch (url) {
+            case "/login": {
+                String email = req.getParameter("email");
+                String password = req.getParameter("password");
+                boolean isSuccess = loginService.checkLogin(email, password);
 
-        LoginService loginService = new LoginService();
-        boolean isSuccess = loginService.checkLogin(email,password);
+                if (isSuccess) {
+                    //Tiến hành lưu cookie
+                    Cookie cookie = new Cookie("username", email);
+                    System.out.println("Cookie value : " + cookie.getValue());
+                    cookie.setMaxAge(1 * 60 * 60);
+                    resp.addCookie(cookie);
 
-        if(isSuccess){
-            //Tiến hành lưu cookie
-            Cookie cookie = new Cookie("username",email);
-            System.out.println("Cookie value : " +cookie.getValue());
-            cookie.setMaxAge(8 * 60 * 60);
-            resp.addCookie(cookie);
+                    resp.sendRedirect(req.getContextPath() + "/index");
+                } else {
+                    req.getRequestDispatcher("login.jsp").forward(req, resp);
+                }
 
-            resp.sendRedirect(req.getContextPath() + "/index");
-        }else{
-            req.getRequestDispatcher("login.jsp").forward(req,resp);
+                break;
+            }
+
+            case "/register": {
+                String email = req.getParameter("email");
+                String fullname = req.getParameter("fullname");
+                String password = req.getParameter("password");
+                String confirmPassword = req.getParameter("confirmPassword");
+                boolean isSuccess = password.equals(confirmPassword);
+                usersRolesService.addNewRegisterUser(fullname, email, password, "avaMale.png", 3);
+                if (isSuccess) {
+                    //Tiến hành lưu cookie
+                    Cookie cookie = new Cookie("username", email);
+                    System.out.println("Cookie value : " + cookie.getValue());
+                    cookie.setMaxAge(1 * 60 * 60);
+                    resp.addCookie(cookie);
+
+                    resp.sendRedirect(req.getContextPath() + "/index");
+                } else {
+                    req.getRequestDispatcher("register.jsp").forward(req, resp);
+                }
+
+                break;
+            }
+            case "/forgotPassword": {
+                String email = req.getParameter("email");
+                String password = usersRolesService.findPasswordByEmail(email);
+
+                if (!password.equals("")) {
+                    System.out.println("password recovery : " + password);
+                    //Tiến hành lưu cookie
+                    Cookie cookie = new Cookie("username", email);
+                    System.out.println("Cookie value : " + cookie.getValue());
+                    cookie.setMaxAge(1 * 60 * 60);
+                    resp.addCookie(cookie);
+                    resp.sendRedirect(req.getContextPath() + "/changePassword");
+
+                } else {
+                    req.getRequestDispatcher("forgotPassword.jsp").forward(req, resp);
+                }
+
+                break;
+            }
+            case "/changePassword" :
+            {
+                System.out.println("da vao dc day ");
+                String password= req.getParameter("newPassword");
+                String confirmPassword= req.getParameter("confirmPassword");
+                Cookie[] cookies = req.getCookies();
+                String email = "";
+                for (Cookie cookie : cookies) {
+                    if ("username".equals(cookie.getName())) {
+                        email = cookie.getValue();
+                        break;
+                    }
+                }
+                if (password.equals(confirmPassword))
+                {
+//                    System.out.println("da vao dc day ");
+                    usersRolesService.updatePasswordByEmail(password,email);
+                    resp.sendRedirect(req.getContextPath() + "/changePasswordSuccess");
+
+                }else
+                {
+                    req.getRequestDispatcher("changePassword.jsp").forward(req, resp);
+
+                }
+                break;
+            }
+
         }
+
+
+        //Khi đăng nhập thành công và chuyển qua page role
+        //thì phải lấy được danh sách role từ database và hiển thị lên giao diện
+        //Bước 1: Lấy danh sách role từ repository
+        //Bước 2: Service trả danh sách role cho Servlet
+        //Bước 3: Trả danh sách Role cho jsp
+        //Bước 4: Sử dụng JSTL load danh sách role ra giao diện
+
+
     }
-
-    //Khi đăng nhập thành công và chuyển qua page role
-    //thì phải lấy được danh sách role từ database và hiển thị lên giao diện
-    //Bước 1: Lấy danh sách role từ repository
-    //Bước 2: Service trả danh sách role cho Servlet
-    //Bước 3: Trả danh sách Role cho jsp
-    //Bước 4: Sử dụng JSTL load danh sách role ra giao diện
-
 }

@@ -130,4 +130,65 @@ public class ProjectRepository {
 
         return list;
     }
+
+
+    public boolean updateJobById(int oldId,int newId) {
+        Connection connection = MysqlConfig.getConnection();
+        String queryNotStarted = "update jobs\n" +
+                "set id = ?\n" +
+                "where id =?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(queryNotStarted);
+            statement.setInt(1,newId );
+            statement.setInt(2,oldId );
+            boolean isSuccess  = statement.executeUpdate() >0;
+
+            return isSuccess ;
+
+        } catch (SQLException e) {
+            System.out.println("Error in ProjectRepository : " + e.getMessage());
+            return false ;
+        }
+
+    }
+
+
+
+    public  List<JobsModel> filterJobs(int id , String projectName , String start ,String end ) {
+        Connection connection = MysqlConfig.getConnection();
+        String queryNotStarted = "select \n" +
+                "\t*\n" +
+                "    from\n" +
+                "            jobs j\n" +
+                "    where\n" +
+                "    j.name LIKE ? OR j.start_date LIKE ? OR j.end_date LIKE ? OR j.id=?";
+
+        List<JobsModel> list = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(queryNotStarted);
+            statement.setString(1,"%"+projectName+"%");
+            statement.setString(2,"%"+start +"%");
+            statement.setString(3,"%"+end+"%");
+            statement.setInt(4,id);
+            ResultSet resultSet  = statement.executeQuery() ;
+            while (resultSet.next())
+            {
+
+                int id1 = resultSet.getInt("id");
+                String finalName = resultSet.getString("name");
+                String start_date = resultSet.getString("start_date");
+                String end_date = resultSet.getString("end_date");
+
+                list.add(new JobsModel(id1, finalName, start_date, end_date));
+            }
+            return list ;
+
+        } catch (SQLException e) {
+            System.out.println("Error in ProjectRepository : " + e.getMessage());
+            return new ArrayList<>() ;
+        }
+
+    }
 }

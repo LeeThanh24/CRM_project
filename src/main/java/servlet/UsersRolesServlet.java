@@ -15,11 +15,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name= "Users Servlet" ,urlPatterns = {"/usersRoles" ,"/user-add","/user/detail"})
 public class UsersRolesServlet extends HttpServlet {
     UsersService usersService= new UsersService();
+
+    UsersRolesService usersRolesService = new UsersRolesService();
+
+    RoleService roleService = new RoleService() ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -45,12 +50,23 @@ public class UsersRolesServlet extends HttpServlet {
             }
             case "/usersRoles" :
             {
-                UsersRolesService usersRolesService = new UsersRolesService();
-                req.setAttribute("usersRoles",usersRolesService.countAllUsersRoles());
-                requestDispacther="user-table.jsp";
 
+                String usersSearch = (req.getParameter("subSearch"));
+                System.out.println("sub search : " + usersSearch);
+                List<UserRoleModel> users = new ArrayList<>();
+                if (usersSearch == null|| usersSearch.isEmpty()||roleService.validString(usersSearch,1).equals("")) {
+                    users = usersRolesService.countAllUsersRoles();
+                } else if (roleService.validNumber(usersSearch) !=0) {
+                    int id = roleService.validNumber(usersSearch);
+                    users = usersRolesService.filterUsers(id,usersSearch,usersSearch,usersSearch,usersSearch);
+
+                }else
+                {
+                    users = usersRolesService.filterUsers(0,usersSearch,usersSearch,usersSearch,usersSearch);
+
+                }
+                req.setAttribute("usersRoles",users);
                 req.getRequestDispatcher("user-table.jsp").forward(req,resp);
-
                 break;
             }
 

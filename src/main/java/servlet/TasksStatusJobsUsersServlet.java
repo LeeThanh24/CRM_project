@@ -34,7 +34,7 @@ public class TasksStatusJobsUsersServlet extends HttpServlet {
             {
                 String taskSearch = (req.getParameter("subSearch"));
                 List<TasksStatusJobsUsersModel> tasks = new ArrayList<>( );
-                if (taskSearch == null || taskSearch.isEmpty()) {
+                if (taskSearch == null || taskSearch.isEmpty()||roleService.validString(taskSearch,1).equals("")) {
                     tasks = tasksStatusJobsUsersService.countAllTasksStatusJobsUsers();
                 } else if (roleService.validNumber(taskSearch) !=0) {
 

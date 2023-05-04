@@ -187,34 +187,6 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-<%--                                        <tr>--%>
-<%--                                            <td>1</td>--%>
-<%--                                            <td>Phân tích dự án</td>--%>
-<%--                                            <td>Dự án CRM</td>--%>
-<%--                                            <td>Nguyễn Văn Tèo</td>--%>
-<%--                                            <td>22/05/2019</td>--%>
-<%--                                            <td>30/05/2019</td>--%>
-<%--                                            <td>Đã hoàn thành</td>--%>
-<%--                                            <td>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-danger">Xóa</a>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-info">Xem</a>--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
-<%--                                        <tr>--%>
-<%--                                            <td>1</td>--%>
-<%--                                            <td>Thiết kế database</td>--%>
-<%--                                            <td>Dự án CRM</td>--%>
-<%--                                            <td>Trần Thị Lan</td>--%>
-<%--                                            <td>22/05/2019</td>--%>
-<%--                                            <td>30/05/2019</td>--%>
-<%--                                            <td>Đang thực hiện</td>--%>
-<%--                                            <td>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-danger">Xóa</a>--%>
-<%--                                                <a href="#" class="btn btn-sm btn-info">Xem</a>--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
                                     </tbody>
                                 </table>
                             </div>

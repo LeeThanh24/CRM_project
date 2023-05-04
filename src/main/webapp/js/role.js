@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+
     $('.btn-xoa').click(function () {
         const id = $(this).attr("id")
         const This = $(this)

@@ -2,7 +2,9 @@ package servlet;
 
 import model.JobsModel;
 import model.ProjectDetailModel;
+import model.RoleModel;
 import service.ProjectsService;
+import service.RoleService;
 import service.TaskService;
 import service.UsersService;
 
@@ -16,46 +18,58 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name="Projects Servlet" ,urlPatterns = {"/jobs","/jobAdd","/jobDetail"})
+@WebServlet(name = "Projects Servlet", urlPatterns = {"/jobs", "/jobAdd", "/jobDetail"})
 public class ProjectsServlet extends HttpServlet {
-    UsersService usersService= new UsersService();
+    UsersService usersService = new UsersService();
     TaskService taskService = new TaskService();
+
+    RoleService roleService = new RoleService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProjectsService projectsService= new ProjectsService();
+        ProjectsService projectsService = new ProjectsService();
         String url = req.getServletPath();
-        Cookie[]cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();
         String fullname = usersService.findNameUserByEmail(cookies).get(1);
         String firstName = usersService.getFirstName(fullname);
-        req.setAttribute("firstName",firstName);
-        switch (url)
-        {
-            case "/jobs" :
-            {
-                List<JobsModel> jobs=projectsService.countAllJobs();
-                req.setAttribute("jobs",jobs);
-                System.out.println(req.getAttribute("ava"));
-                req.getRequestDispatcher("/groupwork.jsp").forward(req,resp);
-                break;
-            }
-            case "/jobAdd" :
-            {
+        req.setAttribute("firstName", firstName);
+        switch (url) {
+            case "/jobs": {
 
-                req.getRequestDispatcher("/groupwork-add.jsp").forward(req,resp);
+                String jobSearch = (req.getParameter("subSearch"));
+                System.out.println("sub search : " + jobSearch);
+                List<JobsModel> jobs = new ArrayList<>();
+                if (jobSearch == null || jobSearch.isEmpty() || roleService.validString(jobSearch, 1).equals("")) {
+                    jobs = projectsService.countAllJobs();
+                } else if (roleService.validNumber(jobSearch) != 0) {
+                    int id = roleService.validNumber(jobSearch);
+                    jobSearch=roleService.validString(jobSearch,2);
+                    jobs = projectsService.filterJobs(id, jobSearch, jobSearch, jobSearch);
+
+                } else {
+                    jobSearch=roleService.validString(jobSearch,2);
+
+                    jobs = projectsService.filterJobs(0, jobSearch, jobSearch, jobSearch);
+                }
+                req.setAttribute("jobs", jobs);
+                req.getRequestDispatcher("/groupwork.jsp").forward(req, resp);
                 break;
             }
-            case "/jobDetail":
-            {
-                List<JobsModel> jobs=projectsService.countAllJobs();
-                String email ="";
-                for (Cookie cookie :cookies
-                     ) {
-                    if (cookie.getName().equals("username"))
-                    {
+            case "/jobAdd": {
+
+                req.getRequestDispatcher("/groupwork-add.jsp").forward(req, resp);
+                break;
+            }
+            case "/jobDetail": {
+                List<JobsModel> jobs = projectsService.countAllJobs();
+                String email = "";
+                for (Cookie cookie : cookies
+                ) {
+                    if (cookie.getName().equals("username")) {
                         email = cookie.getValue();
                     }
                 }
-                System.out.println("Email is :"+email );
+                System.out.println("Email is :" + email);
                 int notStarted = taskService.countAllStatusGroupByStatusId(1);
                 int inProcessed = taskService.countAllStatusGroupByStatusId(2);
                 int finished = taskService.countAllStatusGroupByStatusId(3);
@@ -70,11 +84,11 @@ public class ProjectsServlet extends HttpServlet {
 //                System.out.println("list in started : "+listProjectDetail.get(1).size());
 //                System.out.println("list finiish  : "+listProjectDetail.get(2).size());
 
-                List<ProjectDetailModel > listName = projectsService.countDoers();
-                System.out.println("list name is " +listName.size());
+                List<ProjectDetailModel> listName = projectsService.countDoers();
+                System.out.println("list name is " + listName.size());
                 req.setAttribute("listName", listName);
                 req.setAttribute("listProjectDetail", listProjectDetail);
-                List<String >listAva = new ArrayList<>();
+                List<String> listAva = new ArrayList<>();
                 listAva.add("ava1.jpg");
                 listAva.add("ava2.jpg");
                 listAva.add("ava3.jpg");
@@ -82,8 +96,8 @@ public class ProjectsServlet extends HttpServlet {
                 listAva.add("ava5.jpg");
                 String ava = projectsService.getAva(email);
                 req.setAttribute("ava", ava);
-                req.setAttribute("listAva",listAva);
-                req.getRequestDispatcher("/groupwork-details.jsp").forward(req,resp);
+                req.setAttribute("listAva", listAva);
+                req.getRequestDispatcher("/groupwork-details.jsp").forward(req, resp);
                 break;
             }
         }

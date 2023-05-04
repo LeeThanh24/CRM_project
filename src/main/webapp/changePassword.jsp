@@ -13,22 +13,24 @@
 </head>
 <body>
 <div class="container">
+    <h1>${email}</h1>
     <div class="wrapper">
-        <div class="title"><span>Login</span></div>
-        <form action="http://localhost:8080/login" method="post">
+        <div class="title"><span>Change password</span></div>
+        <form action="http://localhost:8080/changePassword" method="post">
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text"  name ="email" placeholder="Email " required>
+                <input type="text"  name ="newPassword" placeholder="New password" required>
             </div>
             <div class="row">
-                <i class="fas fa-lock"></i>
-                <input type="password" name ="password" placeholder="Password" required>
+                <i class="fas fa-user"></i>
+                <input type="text"  name ="confirmPassword" placeholder="Confirm password" required>
             </div>
-            <div class="pass"><a href="http://localhost:8080/forgotPassword">Forgot password?</a></div>
             <div class="row button">
-                <input type="submit" value="Login">
+                <input type="submit" value="Change">
             </div>
-            <div class="signup-link">Not a member ? <a href="http://localhost:8080/register">Sign up</a></div>
+            <div class="signup-link"> <a href="http://localhost:8080/login">Back to login</a></div>
+
+
         </form>
     </div>
 </div>

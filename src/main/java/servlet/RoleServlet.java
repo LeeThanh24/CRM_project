@@ -40,7 +40,7 @@ public class RoleServlet extends HttpServlet {
                 String roleSearch = (req.getParameter("subSearch"));
                 System.out.println("sub search : " + roleSearch);
                 List<RoleModel> roles = new ArrayList<>();
-                if (roleSearch == null|| roleSearch.isEmpty()) {
+                if (roleSearch == null|| roleSearch.isEmpty()||roleService.validString(roleSearch,1).equals("")) {
                     roles = roleService.getAllRoles();
                 } else if (roleService.validNumber(roleSearch) !=0) {
                     int id = roleService.validNumber(roleSearch);

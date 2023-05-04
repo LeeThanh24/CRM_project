@@ -14,21 +14,22 @@
 <body>
 <div class="container">
     <div class="wrapper">
-        <div class="title"><span>Login</span></div>
-        <form action="http://localhost:8080/login" method="post">
+        <div class="title"><span>Password recovery</span></div>
+        <form action="http://localhost:8080/forgotPassword" method="post">
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text"  name ="email" placeholder="Email " required>
+                <input type="text"  name ="email" placeholder="Your email" >
             </div>
-            <div class="row">
-                <i class="fas fa-lock"></i>
-                <input type="password" name ="password" placeholder="Password" required>
-            </div>
-            <div class="pass"><a href="http://localhost:8080/forgotPassword">Forgot password?</a></div>
+<%--            <div class="row button"  >--%>
+
+<%--                <button type="submit" value="Back to login">Back to login</button>--%>
+
+<%--            </div>--%>
             <div class="row button">
-                <input type="submit" value="Login">
+                <input type="submit" value="Continue">
             </div>
-            <div class="signup-link">Not a member ? <a href="http://localhost:8080/register">Sign up</a></div>
+            <div class="signup-link"> <a href="http://localhost:8080/login">Back to login</a></div>
+
         </form>
     </div>
 </div>
