@@ -190,35 +190,9 @@
                                                class="btn btn-sm btn-primary">Update</a>
                                             <a href="#" class="btn btn-sm btn-danger btn-xoa"
                                                id=${item.getId()}>Delete</a>
-<%--                                            <a href="http://localhost:8080//jobDetail"--%>
-<%--                                               class="btn btn-sm btn-info">Show</a>--%>
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                <%--                                            <tr>--%>
-                                <%--                                                <td>1</td>--%>
-                                <%--                                                <td>Phân tích dự án</td>--%>
-                                <%--                                                <td>22/05/2019</td>--%>
-                                <%--                                                <td>30/05/2019</td>--%>
-                                <%--                                                <td>--%>
-                                <%--                                                    <a href="#" class="btn btn-sm btn-primary">Sửa</a>--%>
-                                <%--                                                    <a href="#" class="btn btn-sm btn-danger">Xóa</a>--%>
-                                <%--                                                    <a href="groupwork-details.jsp" class="btn btn-sm btn-info">Xem</a>--%>
-                                <%--                                                </td>--%>
-                                <%--                                            </tr>--%>
-
-                                <%--                                       --%>
-                                <%--                                        <tr>--%>
-                                <%--                                            <td>1</td>--%>
-                                <%--                                            <td>Thiết kế hệ thống</td>--%>
-                                <%--                                            <td>22/05/2019</td>--%>
-                                <%--                                            <td>30/05/2019</td>--%>
-                                <%--                                            <td>--%>
-                                <%--                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>--%>
-                                <%--                                                <a href="#" class="btn btn-sm btn-danger">Xóa</a>--%>
-                                <%--                                                <a href="groupwork-details.jsp" class="btn btn-sm btn-info">Xem</a>--%>
-                                <%--                                            </td>--%>
-                                <%--                                        </tr>--%>
                                 </tbody>
                             </table>
                         </div>

@@ -66,7 +66,7 @@ public class JobsApi extends HttpServlet {
             case "/api/jobs/update": {
                 System.out.println("da vao update job");
                 String name = req.getParameter("name");
-                String start = null, end = null;
+                String start , end ;
                 start = req.getParameter("start");
                 end = req.getParameter("end");
                 basicResponse = updateJob(name, start, end);
