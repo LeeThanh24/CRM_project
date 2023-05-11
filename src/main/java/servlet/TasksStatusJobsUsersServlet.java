@@ -14,11 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "TasksStatusJobsUsers Servlet", urlPatterns = {"/tasksStatusJobsUsers","/task-add"})
+@WebServlet(name = "TasksStatusJobsUsers Servlet", urlPatterns = {"/tasksStatusJobsUsers","/task-add", "/taskUpdate"})
 public class TasksStatusJobsUsersServlet extends HttpServlet {
     UsersService usersService= new UsersService();
     RoleService roleService = new RoleService();
-
+    ProjectsService projectsService= new ProjectsService();
+    StatusService statusService= new StatusService() ;
     TasksStatusJobsUsersService tasksStatusJobsUsersService = new TasksStatusJobsUsersService();
 
     @Override
@@ -55,13 +56,26 @@ public class TasksStatusJobsUsersServlet extends HttpServlet {
             case "/task-add":
             {
                 UsersService usersService = new UsersService();
-                ProjectsService projectsService= new ProjectsService();
-                StatusService statusService= new StatusService() ;
+
+
                 req.setAttribute("users", usersService.countAllUsersByWithFullname());
                 req.setAttribute("status", statusService.countAllStatusWithName());
                 req.setAttribute("jobs", projectsService.countAllJobs());
                 System.out.println( projectsService.countAllJobs().size());
                 req.getRequestDispatcher("task-add.jsp").forward(req, resp);
+                break ;
+            }
+
+            case "/taskUpdate":
+            {
+                UsersService usersService = new UsersService();
+                List<TasksStatusJobsUsersModel> tasks = tasksStatusJobsUsersService.countAllTasksStatusJobsUsers();
+                req.setAttribute("users", usersService.countAllUsersByWithFullname());
+                req.setAttribute("status", statusService.countAllStatusWithName());
+                req.setAttribute("jobs", projectsService.countAllJobs());
+                req.setAttribute("tasks",tasks);
+                System.out.println( projectsService.countAllJobs().size());
+                req.getRequestDispatcher("taskUpdate.jsp").forward(req, resp);
                 break ;
             }
         }

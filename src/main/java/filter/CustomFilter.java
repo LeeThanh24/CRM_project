@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //urlPatters : Những link khi người dùng gọi sẽ kích hoạt filter
-@WebFilter(urlPatterns = {"/roles", "/roleAdd", "/index.jsp","/index", "/usersRoles" ,"/user-add","/user/detail","/userChooseEmail","/userUpdate", "/jobs","/jobAdd","/jobDetail", "/tasksStatusJobsUsers", "/blank", "/404.jsp","/tasksStatusJobsUsers","/task-add","/profile"})
+@WebFilter(urlPatterns = {"/roles", "/roleAdd","/roleUpdate", "/index.jsp","/index", "/usersRoles" ,"/user-add","/user/detail","/userChooseEmail","/userUpdate", "/jobs","/jobAdd","/jobDetail","/jobUpdate", "/tasksStatusJobsUsers","/taskUpdate", "/blank", "/404.jsp","/tasksStatusJobsUsers","/task-add","/profile"})
 public class CustomFilter implements Filter {
 
 //    @Override

@@ -42,6 +42,19 @@ public class ProjectsService {
         return jobsRepository.deleteJob(id) >0;
     }
 
+    public boolean updateJob(String name ,String start ,String end  )
+    {
+        String []listStringStart = start.split("/");
+        String afterConvertStart = "";
+        afterConvertStart=listStringStart[2]+"/"+listStringStart[1] +"/"+listStringStart[0];
+
+        //convert end
+        String []listStringEnd = end.split("/");
+        String afterConvertEnd = "";
+        afterConvertEnd=listStringEnd[2]+"/"+listStringEnd[1] +"/"+listStringEnd[0];
+        return jobsRepository.updateJob(name,afterConvertStart,afterConvertEnd) ;
+    }
+
     public boolean addNewJob (String name , String start ,String end)
     {
         //convert start

@@ -25,21 +25,19 @@ $(document).ready(function () {
     }
 
     function checkValid(start, end) {
-       const listStringStart = start.split("/");
+        const listStringStart = start.split("/");
         const listStringEnd = end.split("/");
 
 
-        if (listStringEnd[2]>(listStringStart[2]) ) {
+        if (listStringEnd[2] > (listStringStart[2])) {
             return true;
-        } else if (listStringEnd[2]===(listStringStart[2])) {
-            if (listStringEnd[1]>(listStringStart[1])) {
+        } else if (listStringEnd[2] === (listStringStart[2])) {
+            if (listStringEnd[1] > (listStringStart[1])) {
                 return true;
-            }
-            if (listStringEnd[1]===(listStringStart[1]) ) {
-                if (listStringEnd[0]>(listStringStart[0]) ) {
+            } else if (listStringEnd[1] === (listStringStart[1])) {
+                if (listStringEnd[0] > (listStringStart[0])) {
                     return true;
-                }
-                if (listStringEnd[0]===(listStringStart[0])) {
+                } else if (listStringEnd[0] === (listStringStart[0])) {
                     return true;
                 } else {
                     return false;
@@ -60,8 +58,7 @@ $(document).ready(function () {
         if (checkNullUndefined(name) || checkNullUndefined(start) || checkNullUndefined(end)) {
             alert("Added unsuccessfully")
         } else {
-            if (checkValid(start,end))
-            {
+            if (checkValid(start, end)) {
                 $.ajax({
                     method: 'POST',
                     url: 'http://localhost:8080/api/jobs/add',
@@ -74,12 +71,36 @@ $(document).ready(function () {
                 }).done(function (data) {
                     alert("Added successfully")
                 })
-            }else
-            {
+            } else {
                 alert("Date is not valid")
             }
 
 
+        }
+
+
+    })
+    $('.btn-update').click(function (e) {
+        const name = $('#project').find('option:selected').attr('projectId')
+        const start = $('#start').val()
+        const end = $('#end').val()
+
+        e.preventDefault()
+        if (checkValid(start, end)) {
+            $.ajax({
+                method: 'POST',
+                url: 'http://localhost:8080/api/jobs/update',
+                data:
+                    {
+                        name: name,
+                        start: start,
+                        end: end
+                    }
+            }).done(function (data) {
+                alert("Update successfully")
+            })
+        } else {
+            alert("Date is not valid")
         }
 
 

@@ -52,4 +52,38 @@ public class TaskRepository {
         }
         return isSuccess;
     }
+
+    public boolean updateTask(String taskName ,String start ,String end , int userId ,int jobId,int statusId  )
+    {
+        System.out.println("task name "+taskName);
+        System.out.println("start "+start);
+        System.out.println("end"+end);
+        System.out.println("user_id "+userId);
+        System.out.println("job_id "+jobId);
+        System.out.println("status_id "+statusId);
+        Connection connection = MysqlConfig.getConnection();
+        String query = "update  tasks\n" +
+                "    set start_date = ? , end_date =?, user_id = ?,status_id = ?\n" +
+                "    where name = ? and job_id = ?";
+
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,start);
+            statement.setString(2,end);
+            statement.setInt(3,userId);
+            statement.setInt(4,statusId);
+            statement.setString(5,taskName);
+            statement.setInt(6,jobId);
+
+            int result = statement.executeUpdate();
+            return (result!=0);
+        }catch (Exception e)
+        {
+            System.out.println("Error in TaskRepository - update() "+e.getMessage());
+            return false ;
+
+        }
+
+    }
 }

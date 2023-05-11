@@ -186,7 +186,7 @@
                                         <td>${item.getStart_date()}</td>
                                         <td>${item.getEnd_date()}</td>
                                         <td>
-                                            <a href="http://localhost:8080/jobAdd"
+                                            <a href="http://localhost:8080/jobUpdate"
                                                class="btn btn-sm btn-primary">Update</a>
                                             <a href="#" class="btn btn-sm btn-danger btn-xoa"
                                                id=${item.getId()}>Delete</a>

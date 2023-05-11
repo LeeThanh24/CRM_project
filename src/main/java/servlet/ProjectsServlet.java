@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Projects Servlet", urlPatterns = {"/jobs", "/jobAdd", "/jobDetail"})
+@WebServlet(name = "Projects Servlet", urlPatterns = {"/jobs", "/jobAdd", "/jobDetail", "/jobUpdate"})
 public class ProjectsServlet extends HttpServlet {
     UsersService usersService = new UsersService();
     TaskService taskService = new TaskService();
@@ -58,6 +58,12 @@ public class ProjectsServlet extends HttpServlet {
             case "/jobAdd": {
 
                 req.getRequestDispatcher("/groupwork-add.jsp").forward(req, resp);
+                break;
+            }
+            case "/jobUpdate": {
+                List<JobsModel> projects = projectsService.countAllJobs();
+                req.setAttribute("projects",projects);
+                req.getRequestDispatcher("/groupworkUpdate.jsp").forward(req, resp);
                 break;
             }
             case "/jobDetail": {

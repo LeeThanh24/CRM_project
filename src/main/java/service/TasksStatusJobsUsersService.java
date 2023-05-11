@@ -1,6 +1,7 @@
 package service;
 
 import model.TasksStatusJobsUsersModel;
+import repository.TaskRepository;
 import repository.TasksStatusJobsUsersRepository;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class TasksStatusJobsUsersService {
     TasksStatusJobsUsersRepository tasksStatusJobsUsersRepository= new TasksStatusJobsUsersRepository() ;
+    TaskRepository taskRepository = new TaskRepository() ;
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsers()
     {
         updateAllById();
@@ -25,6 +27,18 @@ public class TasksStatusJobsUsersService {
     public List<TasksStatusJobsUsersModel> countAllTasksStatusJobsUsersByEmail(String email )
     {
         return tasksStatusJobsUsersRepository.countAllTasksStatusJobsUsersByEmail(email);
+    }
+    public boolean updateTasks(String taskName ,String start ,String end , int userId ,int jobId,int statusId  )
+    {
+        String []listStringStart = start.split("/");
+        String afterConvertStart = "";
+        afterConvertStart=listStringStart[2]+"/"+listStringStart[1] +"/"+listStringStart[0];
+
+        //convert end
+        String []listStringEnd = end.split("/");
+        String afterConvertEnd = "";
+        afterConvertEnd=listStringEnd[2]+"/"+listStringEnd[1] +"/"+listStringEnd[0];
+        return taskRepository.updateTask(taskName,afterConvertStart,afterConvertEnd,userId,jobId,statusId);
     }
 
 

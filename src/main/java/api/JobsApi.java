@@ -15,8 +15,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "Jobs api", urlPatterns = {"/api/jobs", "/api/jobs/delete", "/api/jobs/add"})
+@WebServlet(name = "Jobs api", urlPatterns = {"/api/jobs", "/api/jobs/delete", "/api/jobs/add","/api/jobs/update"})
 public class JobsApi extends HttpServlet {
+    ProjectsService projectsService = new ProjectsService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getServletPath();
@@ -62,6 +63,15 @@ public class JobsApi extends HttpServlet {
                 basicResponse = addNewJob(name, start, end);
                 break;
             }
+            case "/api/jobs/update": {
+                System.out.println("da vao update job");
+                String name = req.getParameter("name");
+                String start = null, end = null;
+                start = req.getParameter("start");
+                end = req.getParameter("end");
+                basicResponse = updateJob(name, start, end);
+                break;
+            }
         }
         Gson gson = new Gson();
         String dataJson = gson.toJson(basicResponse); //Convert đối tượng hoặc mảng về data json tương ứng
@@ -79,7 +89,7 @@ public class JobsApi extends HttpServlet {
         BasicResponse basicResponse = new BasicResponse();
         basicResponse.setStatusCode(200);
 
-        ProjectsService projectsService = new ProjectsService();
+
         basicResponse.setData(projectsService.countAllJobs());
         return basicResponse;
     }
@@ -88,7 +98,6 @@ public class JobsApi extends HttpServlet {
         BasicResponse basicResponse = new BasicResponse();
         basicResponse.setStatusCode(200);
 
-        ProjectsService projectsService = new ProjectsService();
         basicResponse.setData(projectsService.deleteJob(id));
         return basicResponse;
     }
@@ -96,9 +105,14 @@ public class JobsApi extends HttpServlet {
     private BasicResponse addNewJob(String name, String start, String end) {
         BasicResponse basicResponse = new BasicResponse();
         basicResponse.setStatusCode(200);
-
-        ProjectsService projectsService = new ProjectsService();
         basicResponse.setData(projectsService.addNewJob(name, start, end));
+        return basicResponse;
+    }
+
+    private BasicResponse updateJob(String name, String start, String end) {
+        BasicResponse basicResponse = new BasicResponse();
+        basicResponse.setStatusCode(200);
+        basicResponse.setData(projectsService.updateJob(name, start, end));
         return basicResponse;
     }
 }

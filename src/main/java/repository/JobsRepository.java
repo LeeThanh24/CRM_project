@@ -81,4 +81,28 @@ public class JobsRepository {
         return isSuccess;
     }
 
+    public boolean updateJob(String name ,String  start ,String  end )
+    {
+        Connection connection = MysqlConfig.getConnection();
+        String query = "update  jobs\n" +
+                "    set start_date = ? , end_date =?\n" +
+                "    where name = ?";
+
+
+        try {
+            PreparedStatement statement=connection.prepareStatement(query);
+
+            statement.setString(1,start);
+            statement.setString(2,end);
+            statement.setString(3,name);
+
+            boolean isSuccess=statement.executeUpdate()>0;
+            return isSuccess;
+
+        } catch (SQLException e) {
+            System.out.println("Error in update job : "+e.getMessage());
+            return false;
+        }
+
+    }
 }
