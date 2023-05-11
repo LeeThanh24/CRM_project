@@ -180,7 +180,7 @@
                                                 <td>${item.getRoleName()}</td>
                                                 <td>${item.getDescription()}</td>
                                                 <td>
-                                                    <a href="http://localhost:8080/roleAdd" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="http://localhost:8080/roleUpdate" class="btn btn-sm btn-primary">Update</a>
                                                     <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Delete</a>
 <%--                                                    id=${item.getId()--%>
                                                 </td>

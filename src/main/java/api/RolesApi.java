@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "RolesApi", urlPatterns = {"/api/roles","/api/roles/delete","/api/roles/add"})
+@WebServlet(name = "RolesApi", urlPatterns = {"/api/roles","/api/roles/delete","/api/roles/add","/api/roles/update"})
 public class RolesApi extends HttpServlet {
     //GET : Select. Dùng khi lấy dữ liệu
     //POST : Insert, Update, Delete...
@@ -26,17 +26,49 @@ public class RolesApi extends HttpServlet {
 
         switch (url){
             case "/api/roles":
+            {
                 basicResponse = getAllRole();
                 break;
+            }
+
             case "/api/roles/delete":
+            {
                 int id = Integer.parseInt(req.getParameter("id"));
                 basicResponse = deleteRoleById(id);
                 break;
+            }
+
+            case "/api/roles/update":
+            {
+                String name  =(req.getParameter("name"));
+                String description   =(req.getParameter("desc"));
+                System.out.println("name : "+name);
+                System.out.println("description : "+description);
+
+                List<RoleModel> roles = roleService.getAllRoles();
+                if (description.equals(""))
+                {
+                    for (RoleModel roleModel : roles
+                         ) {
+                        if (roleModel.getRoleName().equals(name))
+                        {
+                            description = roleModel.getDescription();
+                            break ;
+                        }
+                    }
+                }
+                System.out.println("da vao update role");
+                basicResponse = updateRole(name,description);
+                break;
+            }
 
             default:
+            {
                 basicResponse.setStatusCode(404);
                 basicResponse.setMessage("Đường dẫn không tồn tại !");
                 break;
+            }
+
         }
 
         Gson gson = new Gson();
@@ -62,6 +94,12 @@ public class RolesApi extends HttpServlet {
         return response;
     }
 
+    private BasicResponse updateRole(String name ,String desc){
+        BasicResponse response = new BasicResponse();
+        response.setStatusCode(200);
+        response.setData(roleService.update(name,desc));
+        return response;
+    }
     private BasicResponse getAllRole(){
         BasicResponse response = new BasicResponse();
 

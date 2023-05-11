@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "roleServlet", urlPatterns = {"/roles", "/roleAdd"})
+@WebServlet(name = "roleServlet", urlPatterns = {"/roles", "/roleAdd","/roleUpdate"})
 public class RoleServlet extends HttpServlet {
 
     UsersService usersService = new UsersService();
@@ -61,7 +61,13 @@ public class RoleServlet extends HttpServlet {
 
                 break;
             }
+            case "/roleUpdate": {
+                List<RoleModel> roles=  roleService.getAllRoles();
+                req.setAttribute("roles",roles);
+                req.getRequestDispatcher("roleUpdate.jsp").forward(req, resp);
 
+                break;
+            }
 
         }
     }

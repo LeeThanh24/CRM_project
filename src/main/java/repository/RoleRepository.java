@@ -142,10 +142,11 @@ public class RoleRepository {
                 "    where name = ?");
 
         try {
-            List<RoleModel> roleModels = new ArrayList<>() ;
+
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,name );
             statement.setString(2,description );
+            statement.setString(3,name );
             boolean isSuccess = false ;
             isSuccess = (statement.executeUpdate()>0);
             return isSuccess;

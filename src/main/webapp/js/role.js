@@ -5,20 +5,17 @@ $(document).ready(function () {
         const id = $(this).attr("id")
         const This = $(this)
         $.ajax({
-            method : 'GET',
-            url  : `http://localhost:8080/api/roles/delete?id=${id}`,
+            method: 'GET',
+            url: `http://localhost:8080/api/roles/delete?id=${id}`,
 
-        }).done(function (data)
-        {
-           if (data.data )
-           {
-               This.closest('tr').remove()
-               console.log("Delete successfully !")
-           }else
-           {
-               alert("This role has been using")
-               console.log("Delete unsuccessfully !")
-           }
+        }).done(function (data) {
+            if (data.data) {
+                This.closest('tr').remove()
+                console.log("Delete successfully !")
+            } else {
+                alert("This role has been using")
+                console.log("Delete unsuccessfully !")
+            }
         })
     })
 
@@ -26,27 +23,23 @@ $(document).ready(function () {
         return typeof value == 'string' && !value.trim() || typeof value == 'undefined' || value === null;
     }
 
-    $('#btn-add').click(function (e)
-    {
+    $('#btn-add').click(function (e) {
         const name = $('#name').val()
         const desc = $('#desc').val()
-        if (checkNullUndefined(name) || checkNullUndefined(desc))
-        {
+        if (checkNullUndefined(name) || checkNullUndefined(desc)) {
             alert("Added unsuccessfully")
             e.preventDefault()
 
-        }else
-        {
+        } else {
             e.preventDefault() //chan tat ca cac su kien mac dinh
             $.ajax({
-                method : 'POST',
-                url  : `http://localhost:8080/api/roles/add`,
-                data :{
-                    'name' :name,
-                    'desc' : desc
+                method: 'POST',
+                url: `http://localhost:8080/api/roles/add`,
+                data: {
+                    'name': name,
+                    'desc': desc
                 }
-            }).done(function (data)
-            {
+            }).done(function (data) {
                 alert("Added successfully")
             })
 
@@ -54,6 +47,32 @@ $(document).ready(function () {
 
     })
 
+    $('.btn-update').click(function (e) {
+        const name = $('#role').find('option:selected').attr('role_id')
+        const desc = $('#desc').val()
+
+        e.preventDefault() //chan tat ca cac su kien mac dinh
+        $.ajax({
+            method: 'GET',
+            url: `http://localhost:8080/api/roles/update`,
+            data: {
+                'name': name,
+                'desc': desc
+            }
+        }).done(function (data) {
+            if (data.data)
+            {
+                alert("Update successfully")
+            }else
+            {
+                alert("Update unsuccessfully")
+            }
+
+
+        })
+
+
+    })
 
 
 })
