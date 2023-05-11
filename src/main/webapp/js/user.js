@@ -67,9 +67,44 @@ $(document).ready(function () {
                     id: id
                 }
         }).done(function (data) {
-            This .closest('tr').remove()
+            This.closest('tr').remove()
         })
 
 
     })
+
+    $('.btn-update').click(function (e) {
+            const fullname = $('#fullname').val()
+            const password = $('#pass').val()
+            const roleId = $('#role').find('option:selected').attr('role_id')
+            let avatar = $('#ava').find('option:selected').attr('avaId')
+            if (avatar === "1") {
+                avatar = "avaMale.png"
+            } else {
+                avatar = "avaFemale.png"
+            }
+        e.preventDefault()
+        $.ajax({
+            method: 'POST',
+            url: `http://localhost:8080/api/usersRoles/update`,
+            data:
+                {
+                    roleId: roleId,
+                    avatar: avatar,
+                    fullname: fullname,
+                    password: password
+                }
+        }).done(function (data) {
+            if (data.data)
+            {
+                alert("Update successfully")
+            }else
+            {
+                alert("Update successfully")
+            }
+        })
+
+
+    })
+
 })

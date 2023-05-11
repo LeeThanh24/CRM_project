@@ -6,6 +6,7 @@ public class UserRoleModel {
     private String lastName ;
     private String username ;
 
+
     private String roleName;
 
     public UserRoleModel(int id, String firstName, String lastName, String username, String roleName) {

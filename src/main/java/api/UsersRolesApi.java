@@ -3,17 +3,20 @@ package api;
 import com.google.gson.Gson;
 import payload.BasicResponse;
 import service.UsersRolesService;
+import service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name ="Users Roles Api" ,urlPatterns ={"/api/usersRoles","/api/usersRolesAdd","/api/usersRoles/delete"} )
+@WebServlet(name ="Users Roles Api" ,urlPatterns ={"/api/usersRoles","/api/usersRolesAdd","/api/usersRoles/delete","/api/usersRoles/update"} )
 public class UsersRolesApi extends HttpServlet {
+    UsersService usersService = new UsersService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getServletPath();
@@ -62,6 +65,34 @@ public class UsersRolesApi extends HttpServlet {
                 basicResponse= deleteUserRoleById(id);
                 break ;
             }
+            case "/api/usersRoles/update":
+            {
+                System.out.println("da vao day : ");
+                String fullname = req.getParameter("fullname");
+                int roleId  = Integer.parseInt(req.getParameter("roleId"));
+                String password = req.getParameter("password");
+                String avatar = req.getParameter("avatar");
+
+                System.out.println("fullname : "+fullname);
+                System.out.println("roleId : "+roleId);
+                System.out.println("password : "+password);
+                System.out.println("avatar : "+avatar);
+                Cookie[] cookies = req.getCookies() ;
+                System.out.println("Cookie size " +cookies.length);
+                String email = "" ;
+                for (Cookie cookie :cookies
+                     ) {
+                    if (cookie.getName().equals("tempEmailForUserUpdate"))
+                    {
+                        email =cookie.getValue();
+                        break;
+                    }
+//                    System.out.println(cookie.getName());
+                }
+
+                basicResponse= update(email,password,fullname,avatar,roleId);
+                break ;
+            }
         }
 
         Gson gson = new Gson();
@@ -101,6 +132,15 @@ public class UsersRolesApi extends HttpServlet {
         UsersRolesService usersRolesService = new UsersRolesService();
         basicResponse.setStatusCode(200);
         basicResponse.setData(usersRolesService.deleteUserRoleById(id));
+        return basicResponse;
+    }
+
+    private BasicResponse update(String email , String password ,String fullname ,String avatar , int roleId)
+    {
+        BasicResponse basicResponse = new BasicResponse();
+
+        basicResponse.setStatusCode(200);
+        basicResponse.setData(usersService.updateUser(email,password,fullname,avatar,roleId));
         return basicResponse;
     }
 }

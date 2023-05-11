@@ -52,6 +52,11 @@ public class RoleService {
         return roleRepository.addNewRole(name,desc) >= 1;
     }
 
+    public boolean update(String name, String desc){
+
+        return roleRepository.updateRole(name,desc);
+    }
+
     public int  validNumber(String num) {
         String []list = num.split(" ");
         num ="";

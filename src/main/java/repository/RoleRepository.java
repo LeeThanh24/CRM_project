@@ -133,4 +133,27 @@ public class RoleRepository {
         }
 
     }
+
+    public boolean updateRole(String name , String description ) {
+        Connection connection = MysqlConfig.getConnection();
+
+        String query = ("update  roles\n" +
+                "    set name = ? , description =?\n" +
+                "    where name = ?");
+
+        try {
+            List<RoleModel> roleModels = new ArrayList<>() ;
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,name );
+            statement.setString(2,description );
+            boolean isSuccess = false ;
+            isSuccess = (statement.executeUpdate()>0);
+            return isSuccess;
+
+        } catch (SQLException e) {
+            System.out.println("Error in mysql update role  : "+e.getMessage());
+            return false ;
+        }
+
+    }
 }

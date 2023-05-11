@@ -26,6 +26,15 @@ public class UsersService {
         return usersRepository.findUserByEmail(email) ;
     }
 
+    public List<String> countAllEmails ( )
+    {
+        return usersRepository.countAllEmail();
+    }
+
+    public boolean updateUser(String email , String password ,String fullname ,String avatar , int roleId)
+    {
+        return usersRepository.updateUser(email,password,fullname,avatar,roleId);
+    }
     public String getFirstName ( String fullname)
     {
         String []temp= fullname.split(" ");
@@ -36,5 +45,10 @@ public class UsersService {
         {
             return temp[temp.length-1];
         }
+    }
+
+    public List<String > findOneUserByEmail ( String email)
+    {
+        return usersRepository.findOneUserByEmail(email);
     }
 }

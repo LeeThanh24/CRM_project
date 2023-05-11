@@ -254,7 +254,7 @@
             </div>
             <div class="pass"><a href="http://localhost:8080/forgotPassword">Forgot password?</a></div>
             <div class="row button">
-                <input type="submit" value="Login">
+                <input type="submit" value="Sign up">
             </div>
             <div class="signup-link">Alrealdy have an account ? <a href="http://localhost:8080/login">Login</a></div>
         </form>

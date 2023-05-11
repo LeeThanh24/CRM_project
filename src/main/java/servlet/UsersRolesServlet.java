@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name= "Users Servlet" ,urlPatterns = {"/usersRoles" ,"/user-add","/user/detail"})
+@WebServlet(name= "Users Servlet" ,urlPatterns = {"/usersRoles" ,"/user-add","/user/detail","/userChooseEmail","/userUpdate"})
 public class UsersRolesServlet extends HttpServlet {
     UsersService usersService= new UsersService();
 
@@ -36,7 +36,7 @@ public class UsersRolesServlet extends HttpServlet {
         String fullname = usersService.findNameUserByEmail(cookies).get(1);
         String firstName = usersService.getFirstName(fullname);
         req.setAttribute("firstName",firstName);
-        switch (url)
+         switch (url)
         {
             case "/user/detail" :
             {
@@ -45,6 +45,17 @@ public class UsersRolesServlet extends HttpServlet {
                 req.setAttribute("users",userModels);
 
                 req.getRequestDispatcher("user-details.jsp").forward(req,resp);
+
+                break;
+            }
+            case "/userChooseEmail" :
+            {
+                List<String > emails = usersService.countAllEmails();
+
+
+                    req.setAttribute("emails", emails);
+                req.setAttribute("ava", req.getAttribute("ava"));
+                    req.getRequestDispatcher("userChooseEmail.jsp").forward(req, resp);
 
                 break;
             }
@@ -75,12 +86,43 @@ public class UsersRolesServlet extends HttpServlet {
                 RoleService roleService = new RoleService();
                 List<RoleModel>roles = roleService.getAllRoles();
                 req.setAttribute("roles",roles);
-                requestDispacther="user-add.jsp";
                 req.getRequestDispatcher("user-add.jsp").forward(req,resp);
                 break;
             }
 
+            case "/userUpdate":
+            {
+                List<RoleModel>roles = roleService.getAllRoles();
+                String email=req.getParameter("email") ;
+                System.out.println("email  : " +email);
+                List<String > emails = usersService.countAllEmails();
+                if (emails.contains(email))
+                {
+                    List<String> user = usersService.findOneUserByEmail(email);
+                    req.setAttribute("roles", roles);
+                    req.setAttribute("emails", emails);
+
+                    req.setAttribute("password", user.get(0));
+                    req.setAttribute("fullname", user.get(1));
+
+                    req.setAttribute("avatar", user.get(2));
+                    req.setAttribute("roleName", user.get(3));
+                    req.setAttribute("ava", req.getAttribute("ava"));
+
+                    Cookie cookie  = new Cookie("tempEmailForUserUpdate" ,email);
+                    cookie.setMaxAge(1* 60 * 60);
+                    resp.addCookie(cookie);
+                    req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
+                }
+
+            }
         }
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
     }

@@ -174,9 +174,8 @@
                                                 <td>${item.getUsername()}</td>
                                                 <td>${item.getRoleName()}</td>
                                                 <td>
-                                                    <a href="http://localhost:8080/user-add" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="http://localhost:8080/userChooseEmail"  class="btn btn-sm btn-primary" >Update</a>
                                                     <a href="#" class="btn btn-sm btn-danger btn-xoa" id =${item.getId()} >Delete</a>
-                                                    <a href="http://localhost:8080/profile" class="btn btn-sm btn-info">Show</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
