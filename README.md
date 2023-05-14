@@ -1,10 +1,10 @@
 
-# CRM PROJECT - EMPLOYEES/STUDENTS MANAGEMENT
+# CRM PROJECT - EMPLOYEES MANAGEMENT
 
 
 ## Main function
 
-* Login ,register
+* Login ,register 
 * Able to see all roles of members , all projects , tasks , dashboard
 * Able to see the proces of all projects , tasks
 * Basic function such as update , add , delete , search
@@ -20,9 +20,9 @@
     * start_date : start date of job
     * end_date : end date of job
 
-- Table roles :
+- Table roles : 
     * id (primary key)
-    * name : role name
+    * name : role name 
     * description : role description
 
 - Table status :
@@ -34,7 +34,7 @@
     * name : task name
     * start_date : start date of task
     * end_date : end date of task
-    * user_id (foreign_key references users) : id of user
+    * user_id (foreign_key references users) : id of user 
     * job_id (foreign_key references jobs) : id of job
     * status_id (foreign_key references status) : id of status
 
@@ -55,71 +55,100 @@
 * Apache tomcat 9
 * Maven
 * Use Mysql to store and query data
-* Gson version 2.10 : to transfer object to json
+* Gson version 2.10 : to transfer object to json 
 * Use docker to deploy
 
 
-
+    
 ## API Reference
 
 *  **Jobs API**
-   #### Get all jobs
+    #### Get all jobs
 
     ```http
     GET /api/jobs
     ```
 
-   #### Add job
+    #### Add job
 
     ```http
     POST /api/jobs/add
     ```
 
+<<<<<<< HEAD
    | Parameter | Type     | Description                       |
    | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of job  |
    | `start`      | `string` |start date of job |
    | `end`      | `string` | end date of job |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `name`      | `string` | name of job  |
+    | `start`      | `string` |start date of job |
+    | `end`      | `string` | end date of job |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
-   #### Update job
+    #### Update job
 
     ```http
     POST /api/jobs/update
     ```
 
+<<<<<<< HEAD
    | Parameter | Type     | Description                       |
    | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of job  |
    | `start`      | `string` |start date of job |
    | `end`      | `string` | end date of job |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `name`      | `string` | name of job  |
+    | `start`      | `string` |start date of job |
+    | `end`      | `string` | end date of job |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
-   #### Delete job
+    #### Delete job
 
     ```http
     POST /api/jobs/delete
     ```
 
+<<<<<<< HEAD
    | Parameter | Type     | Description                       |
    | :-------- | :------- | :-------------------------------- |
    | `id`      | `int` | id of job  |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `id`      | `int` | id of job  |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
 *  **Roles API**
-   #### Get all roles
+    #### Get all roles
 
     ```http
     GET /api/roles
     ```
 
-   #### Add role
+    #### Add role
 
     ```http
     GET /api/roles/add
     ```
 
+<<<<<<< HEAD
    | Parameter | Type     | Description                       |
    | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of role  |
    | `description`      | `string` |description of role |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `name`      | `string` | name of role  |
+    | `description`      | `string` |description of role |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
 
     #### Update role
@@ -146,12 +175,13 @@
 
 *  **Tasks API**
 
-   #### Add task
+    #### Add task
 
     ```http
     POST /api/tasksStatusJobsUsers/add
     ```
 
+<<<<<<< HEAD
    | Parameter | Type        | Description        |
    |:------------|:-------------------| :-------------------------------- |
    | `taskName`      | `string`    | name of task       |
@@ -160,6 +190,16 @@
    | `user_id`      | `int`       | user id of task    |
    | `status_id`      | `int`       | status id of task  |
    | `job_id`      | `int`       | job id of task     |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `taskName`      | `string` | name of task  |
+    | `start`      | `string` |start date of task |
+    | `end`      | `string` |start date of task |
+    | `user_id`      | `int` |user id of task |
+    | `status_id`      | `int` |status id of task |
+    | `job_id`      | `int` |job id of task |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
 
     #### Update task
@@ -187,25 +227,33 @@
     | Parameter | Type     | Description                       |
     | :-------- | :------- | :-------------------------------- |
     | `id`      | `int` | id of task  |
-
+    
 *  **Users API**
 
-   #### Get all users
+    #### Get all users
 
     ```http
     GET /api/usersRoles
     ```
-   #### Add user
+    #### Add user
 
     ```http
     POST /api/usersRolesAdd
     ```
 
+<<<<<<< HEAD
    | Parameter | Type     | Description                       |
    | :-------- | :------- | :-------------------------------- |
    | `fullname`      | `string` | fullname of user  |
    | `email`      | `string` |email of user |
    | `password`      | `string` |password of user |
+=======
+    | Parameter | Type     | Description                       |
+    | :-------- | :------- | :-------------------------------- |
+    | `fullname`      | `string` | fullname of user  |
+    | `email`      | `string` |email of user |
+    | `password`      | `string` |password of user |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
 
 
 
@@ -216,7 +264,11 @@
     ```
 
     | Parameter | Type     | Description                       |
+<<<<<<< HEAD
 | :-------- | :------- | :-------------------------------- |
+=======
+    | :-------- | :------- | :-------------------------------- |
+>>>>>>> ce3db6e18a0fbd3607f009b6169bf512fe9f8349
     | `fullname`      | `string` | fullname of user  |
     | `email`      | `string` |email of user |
     | `password`      | `string` |password of user |
@@ -237,10 +289,10 @@
 ## Installation
 
 * Tool used in project
-    * Docker
-    * Mysql workbench
-    * IntelliJ IDEA
-
+  * Docker
+  * Mysql workbench
+  * IntelliJ IDEA
+    
 
 
 
