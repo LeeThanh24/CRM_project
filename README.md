@@ -1,5 +1,5 @@
 
-# CRM PROJECT - EMPLOYEES MANAGEMENT
+# CRM PROJECT - EMPLOYEES/STUDENTS MANAGEMENT
 
 
 ## Main function
@@ -76,7 +76,7 @@
     ```
 
    | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+   | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of job  |
    | `start`      | `string` |start date of job |
    | `end`      | `string` | end date of job |
@@ -88,7 +88,7 @@
     ```
 
    | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+   | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of job  |
    | `start`      | `string` |start date of job |
    | `end`      | `string` | end date of job |
@@ -100,7 +100,7 @@
     ```
 
    | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+   | :-------- | :------- | :-------------------------------- |
    | `id`      | `int` | id of job  |
 
 *  **Roles API**
@@ -117,7 +117,7 @@
     ```
 
    | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+   | :-------- | :------- | :-------------------------------- |
    | `name`      | `string` | name of role  |
    | `description`      | `string` |description of role |
 
@@ -152,14 +152,14 @@
     POST /api/tasksStatusJobsUsers/add
     ```
 
-   | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-   | `taskName`      | `string` | name of task  |
-   | `start`      | `string` |start date of task |
-   | `end`      | `string` |start date of task |
-   | `user_id`      | `int` |user id of task |
-   | `status_id`      | `int` |status id of task |
-   | `job_id`      | `int` |job id of task |
+   | Parameter | Type        | Description        |
+   |:------------|:-------------------| :-------------------------------- |
+   | `taskName`      | `string`    | name of task       |
+   | `start`      | `string`    | start date of task |
+   | `end`      | `string`    | start date of task |
+   | `user_id`      | `int`       | user id of task    |
+   | `status_id`      | `int`       | status id of task  |
+   | `job_id`      | `int`       | job id of task     |
 
 
     #### Update task
@@ -202,7 +202,7 @@
     ```
 
    | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+   | :-------- | :------- | :-------------------------------- |
    | `fullname`      | `string` | fullname of user  |
    | `email`      | `string` |email of user |
    | `password`      | `string` |password of user |
@@ -216,10 +216,10 @@
     ```
 
     | Parameter | Type     | Description                       |
-    | :-------- | :------- | :-------------------------------- |
-| `fullname`      | `string` | fullname of user  |
-| `email`      | `string` |email of user |
-| `password`      | `string` |password of user |
+| :-------- | :------- | :-------------------------------- |
+    | `fullname`      | `string` | fullname of user  |
+    | `email`      | `string` |email of user |
+    | `password`      | `string` |password of user |
 
 
     #### Delete user
