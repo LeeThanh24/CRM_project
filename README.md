@@ -321,3 +321,8 @@
   https://mvnrepository.com/artifact/mysql/mysql-connector-java
 ```
     
+## Demo![dashboard](https://github.com/LeeThanh24/CRM_project/assets/94585743/cbb0bd09-c6b1-4c31-a479-0a0f9d9e8581)
+![login](https://github.com/LeeThanh24/CRM_project/assets/94585743/606a3610-723a-4dc2-8d68-9731fb9a57e3)
+![member](https://github.com/LeeThanh24/CRM_project/assets/94585743/336f6af5-3ebb-48bb-8925-e92ab02a4b04)
+![projectPage](https://github.com/LeeThanh24/CRM_project/assets/94585743/cc255a09-42b8-4995-9165-43be17371b51)
+![role](https://github.com/LeeThanh24/CRM_project/assets/94585743/3b49e94b-b53c-4aab-882f-b99d512198c4)
