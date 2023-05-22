@@ -11,7 +11,7 @@
 
 
 
-## Techonolgy
+## Technology
 
 **Database**
 - Table jobs :
