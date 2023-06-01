@@ -55,23 +55,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 src="plugins/images/pixeladmin-logo.png" alt="home" /></b><span
                             class="hidden-xs"><img src="plugins/images/pixeladmin-text.png" alt="home" /></span></a>
                 </div>
-                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control" name ="search">
-                            <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </li>
-                </ul>
+<%--                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">--%>
+<%--                    <li>--%>
+<%--                        <form role="search" class="app-search hidden-xs">--%>
+<%--                            <input type="text" placeholder="Search..." class="form-control" name ="search">--%>
+<%--                            <a href="">--%>
+<%--                                <i class="fa fa-search"></i>--%>
+<%--                            </a>--%>
+<%--                        </form>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="profile-pic" href="#"> <img src="plugins/images/users/${ava}" alt="user-img"
-                            <% String fullname = (String) request.getAttribute("fullname");%>
-                            <% String email = (String) request.getAttribute("email");%>
-                            <% String firstName = (String) request.getAttribute("firstName");%>
-                                width="36" class="img-circle" ><b class="hidden-xs" style='color:#F6F1F1'  ><%=firstName%></b> </a>
+                        <div class="dropdown">
+                            <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
+                                <img src="plugins/images/users/${ava}" alt="user-img" width="36" class="img-circle"/>
+                                <% String fullname = (String) request.getAttribute("fullname");%>
+                                <% String email = (String) request.getAttribute("email");%>
+                                <% String firstName = (String) request.getAttribute("firstName");%>
+                                <b class="hidden-xs" style='color:#F6F1F1'><%=firstName%></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://localhost:8080/profile">Profiles</a></li>
+                                <li><a href="#">Statistics</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://localhost:8080/login">Log out</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>

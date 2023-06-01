@@ -55,16 +55,16 @@
                         </span>
                     </a>
                 </div>
-                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control">
-                            <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </li>
-                </ul>
+<%--                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">--%>
+<%--                    <li>--%>
+<%--                        <form role="search" class="app-search hidden-xs">--%>
+<%--                            <input type="text" placeholder="Search..." class="form-control">--%>
+<%--                            <a href="">--%>
+<%--                                <i class="fa fa-search"></i>--%>
+<%--                            </a>--%>
+<%--                        </form>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
                 <%
                     String email =(String) request.getAttribute("email");
                     List<ProjectDetailModel> listModel = (List<ProjectDetailModel>) request.getAttribute("listName");
@@ -270,7 +270,7 @@
                                                 <td>${item.getEnd()}</td>
                                                 <td>${item.getStatus()}</td>
                                                 <td>
-                                                    <a href="profile-edit.jsp" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="http://localhost:8080/task-add" class="btn btn-sm btn-primary">Update</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

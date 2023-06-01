@@ -17,21 +17,32 @@ public class IndexServlet extends HttpServlet {
     TaskService taskService = new TaskService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("go to index servlet");
-        Cookie[] cookies = req.getCookies();
+//        try
+//        {
+//            String mainSearch = req.getParameter("mainSearch");
+//            System.out.println("TEST MAIN SEARCH : "+mainSearch);
+//
+//        }catch (Exception e )
+//        {
+            System.out.println("go to index servlet");
+            Cookie[] cookies = req.getCookies();
 
-        String fullname = usersService.findNameUserByEmail(cookies).get(1);
-        String firstName = usersService.getFirstName(fullname);
-        req.setAttribute("firstName", firstName);
+            String fullname = usersService.findNameUserByEmail(cookies).get(1);
+            String firstName = usersService.getFirstName(fullname);
+            req.setAttribute("firstName", firstName);
 
-        int notStarted = taskService.countAllStatusGroupByStatusId(1);
-        int inProcessed = taskService.countAllStatusGroupByStatusId(2);
-        int finished = taskService.countAllStatusGroupByStatusId(3);
-        req.setAttribute("notStarted", notStarted);
-        req.setAttribute("inProcessed", inProcessed);
-        req.setAttribute("finished", finished);
+            int notStarted = taskService.countAllStatusGroupByStatusId(1);
+            int inProcessed = taskService.countAllStatusGroupByStatusId(2);
+            int finished = taskService.countAllStatusGroupByStatusId(3);
+            req.setAttribute("notStarted", notStarted);
+            req.setAttribute("inProcessed", inProcessed);
+            req.setAttribute("finished", finished);
 
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+//        }
+
+
+
 
 
     }

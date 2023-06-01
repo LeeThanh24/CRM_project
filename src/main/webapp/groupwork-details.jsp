@@ -68,16 +68,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </span>
                 </a>
             </div>
-            <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                <li>
-                    <form role="search" class="app-search hidden-xs">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
-            </ul>
+<%--            <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">--%>
+<%--                <li>--%>
+<%--                    <form role="search" class="app-search hidden-xs">--%>
+<%--                        <input type="text" placeholder="Search..." class="form-control">--%>
+<%--                        <a href="">--%>
+<%--                            <i class="fa fa-search"></i>--%>
+<%--                        </a>--%>
+<%--                    </form>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
 <%--            <%!--%>
 <%--                public ProjectDetailModel findModelByEmail (List<ProjectDetailModel> list,String email )--%>
 <%--                {--%>
