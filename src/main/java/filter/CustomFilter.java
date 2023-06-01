@@ -36,6 +36,7 @@ public class CustomFilter implements Filter {
 
             if (cookies != null && cookies.length > 0) {
                 boolean isLogin = false;
+
                 for (Cookie cookie : cookies) {
                     if ("username".equals(cookie.getName())) {
                         isLogin = true;
@@ -48,13 +49,20 @@ public class CustomFilter implements Filter {
                 }
 
                 if (isLogin) {
-                    String ava = projectsService.getAva(email);
 
+                    String ava = projectsService.getAva(email);
+                    System.out.println(" co ava ko " +ava);
+                    if (ava.isEmpty() || ava.equals(""))
+                    {
+                        response.sendRedirect(request.getContextPath() + "/login");
+                        return ;
+                    }
                     String fullname = usersService.findNameUserByEmail(cookies).get(1);
                     String firstName = usersService.getFirstName(fullname);
 
                     request.setAttribute("ava", ava);
                     request.setAttribute("firstName", firstName);
+
                     if (request.getServletPath().equals("/index.jsp"))
                     {
                         response.sendRedirect(request.getContextPath() + "/index");
@@ -67,9 +75,12 @@ public class CustomFilter implements Filter {
                     }
 
                 } else {
+                    System.out.println("ko co islogin");
                     response.sendRedirect(request.getContextPath() + "/login");
                 }
             } else {
+                System.out.println("ko co islogin");
+
                 response.sendRedirect(request.getContextPath() + "/login");
             }
 //        }
