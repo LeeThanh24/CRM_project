@@ -9,7 +9,7 @@ public class MysqlConfig {
     private static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static String URL = "jdbc:mysql://localhost:3306/crm_app";
     private static String USER_NAME = "root";
-    private static String PASSWORD = "02042003";
+    private static String PASSWORD = "1234";
 
     public static Connection getConnection(){
         Connection connection = null;
