@@ -30,11 +30,21 @@ public class CustomFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         System.out.println("Đây là filter " + request.getServletPath());
-        Cookie[] cookies = request.getCookies();
-        System.out.println("Cookie size :"+cookies.length);
+        Cookie[] cookies = null ;
+        try
+        {
+            cookies= request.getCookies();
+            System.out.println("Cookie size :"+cookies.length);
+        }catch (Exception e )
+        {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return ;
+        }
+
+
         String email = "";
 
-            if (cookies != null && cookies.length > 0) {
+            if (cookies.length > 0) {
                 boolean isLogin = false;
 
                 for (Cookie cookie : cookies) {

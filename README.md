@@ -275,6 +275,7 @@
 ## Demo
 
 ![login](https://github.com/LeeThanh24/CRM_project/assets/94585743/606a3610-723a-4dc2-8d68-9731fb9a57e3)
+![register](https://github.com/LeeThanh24/CRM_project/assets/94585743/9c6c12ec-93f7-4dcd-b6ad-06afa5fc8de1)
 ![dashboard](https://github.com/LeeThanh24/CRM_project/assets/94585743/cbb0bd09-c6b1-4c31-a479-0a0f9d9e8581)
 ![member](https://github.com/LeeThanh24/CRM_project/assets/94585743/336f6af5-3ebb-48bb-8925-e92ab02a4b04)
 ![role](https://github.com/LeeThanh24/CRM_project/assets/94585743/3b49e94b-b53c-4aab-882f-b99d512198c4)
