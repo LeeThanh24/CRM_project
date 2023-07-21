@@ -4,11 +4,11 @@ USE crm_app;
 CREATE TABLE IF NOT EXISTS roles (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(10users0),
+    description VARCHAR(100),
     PRIMARY KEY (id)
-);users
+);
 
-CREATE or MODIFY TABLE IF NOT EXISTS users (
+CREATE  TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -43,47 +43,197 @@ CREATE TABLE IF NOT EXISTS tasks (
     PRIMARY KEY (id)
 );
 
-CREATE database crm_app
-USE crm_app;
+ALTER TABLE users ADD FOREIGN KEY (role_id) REFERENCES roles (id)  ON UPDATE CASCADE;
+ALTER TABLE tasks ADD FOREIGN KEY (user_id) REFERENCES users (id)  ON UPDATE CASCADE;
+ALTER TABLE tasks ADD FOREIGN KEY (job_id) REFERENCES jobs (id)  ON UPDATE CASCADE;
+ALTER TABLE tasks ADD FOREIGN KEY (status_id) REFERENCES status (id)  ON UPDATE CASCADE;
 
-CREATE TABLE IF NOT EXISTS roles (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    description VARCHAR(10users0),
-    PRIMARY KEY (id)
-);users
 
-CREATE or MODIFY TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT,
-    email VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    fullname VARCHAR(100) NOT NULL,
-    avatar VARCHAR(100),
-    role_id INT NOT NULL,
-    PRIMARY KEY (id)
-);
+INSERT INTO roles( name, description ) VALUES ("ROLE_ADMIN", "Quyền quản trị hệ thống");
+INSERT INTO roles( name, description ) VALUES ("ROLE_MANAGER", "Quản lý");
+INSERT INTO roles( name, description ) VALUES ("ROLE_USER", "Nhân viên");
 
-CREATE TABLE IF NOT EXISTS status (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id)
-);
+INSERT INTO status( name ) VALUES ("Chưa thực hiện");
+INSERT INTO status( name ) VALUES ("Đang thực hiện");
+INSERT INTO status( name ) VALUES ("Đã thực hiện");
 
-CREATE TABLE IF NOT EXISTS jobs (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    PRIMARY KEY (id)
-);
 
-CREATE TABLE IF NOT EXISTS tasks (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    user_id INT NOT NULL,
-    job_id INT NOT NULL,
-    status_id INT NOT NULL,
-    PRIMARY KEY (id)
-);
+
+
+/*
+INSERT INTO status( id,name ) VALUES (4,"testt");
+select 
+	*
+from 
+	status
+ 
+tasks select 
+	*
+from 
+	jobs
+INSERT INTO roles( name, description ) VALUES ("ROLE_MANAGER", "Quản lý");
+INSERT INTO roles( name, description ) VALUES ("ROLE_USER", "Nhân viên");
+
+	select id , name ,DATE_FORMAT(start_date,'%d-%m-%Y') as start_date ,DATE_FORMAT(end_date,'%d-%m-%Y') as end_date from jobs
+
+
+select 
+	*
+from 
+	sub_job sj 
+    INNER JOIN jobs j
+    ON sj.job_id =j.id
+
+select 
+	*
+from 
+	jobs
+
+select 
+	u.fullname , s.name ,j.name,t.name, t.start_date ,t.end_date ,u.avatar,u.email
+from 
+	tasks t 
+    inner join users u 
+    on u.id = t.user_id
+    inner join status s 
+    on s.id = t.status_id
+    inner join jobs j
+    on j.id = t.job_id
+where
+	s.name Like '%ĐANG THỰC HIỆN%'
+    
+select 
+	id , name ,description
+from 
+	roles
+where 
+	name LIKE "%ROLE %" OR description LIKE "test" OR id = 2 
+
+update  roles 
+set id = 4 
+where id = 5 
+
+desc users
+  select 
+	*
+from 
+	jobs 
+    
+ select 
+	id ,name ,start_date,en
+from 
+	tasks 
+
+update tasks 
+set id =3 
+where id =5
+
+select 
+	*
+from 
+	users 
+    
+select 
+	*
+from 
+	sub_job
+    
+
+select 
+	avatar
+from 
+	users
+where 
+	email = 'ntnv@gmail.com'
+where 
+	email = 'thanhxuandaole@gmail.com'
+select  u.email, u.fullname  from users u where u.email = 'thanhxuandaole@gmail.com'
+
+ALTER TABLE users
+ADD UNIQUE (email);
+
+desc users
+    users
+update jobs 
+set name ="CRM"		
+where id =1 OR id =2 
+insert into jobs (name,start_date,end_date) values ("test2","2023-04-01","2023-04-01")
+    
+delete from jobs where id = '5'
+
+select 
+	*
+from 
+	tasks 
+select 
+	*
+from 
+	jobs 
+DESC jobs
+SELECT 
+  TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+FROM
+  INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE
+  REFERENCED_TABLE_SCHEMA = '<database>' AND
+  REFERENCED_TABLE_NAME = '<table>';
+delete from users 
+where id = 2 
+ALTER TABLE users
+ADD CONSTRAINT FOREIGN KEY (role_id) REFERENCES roles(id);
+
+ALTER TABLE users 
+DROP CONSTRAINT users_ibfk_1
+alter table jobs 
+alter DATE_FORMAT(start_date,'%d-%m-%Y')
+
+delete from jobs 
+where id =2
+update jobs
+set start_date =  DATE_FORMAT(start_date,'%d-%m-%Y')
+
+INSERT INTO jobs values
+ (2 ,"Phân tích dự ánn","2019-05-22","2019-05-30")
+insert into roles (name,description) values ('3','test')
+use osahaneat
+select 
+	*
+from 
+	roles
+    sub_job
+CREATE TABLE sub_job (
+	user_id int  ,
+    job_id int , 
+    name_subjob varchar (255) , 
+    primary key (user_id ,job_id ) ,
+    foreign key (user_id ) references users(id),
+    foreign key (job_id ) references jobs(id)
+
+
+)
+
+insert into roles (role_name) values ("ADMIN") ,("USER")
+insert into roles (roles_name) values ("USER")
+
+INSERT INTO users  (email ,password ,role_id )
+VALUES 
+("nguyenvanA@gmail.com","123456" ,1 ) , 
+("nguyenvanB@gmail.com","123" ,2 ) 
+jobsrolesstatustasks
+drop table sub_job
+update  tasks
+set start_date = '2003-07-02' , end_date ='2003-09-02', user_id = ?, job_id = ?,status_id = ? 
+where name = ?
+select 
+	*
+from tasks tasks
+
+update tasks
+set id =1 
+where id =1 
+
+where
+	email = 
+    
+use TEST1
+*/
